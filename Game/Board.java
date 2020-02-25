@@ -1,23 +1,30 @@
 package Game;
 
-//import Ships.Ship;
 
 public class Board 
-{
+{	// Board 1 == Human Board, Board 2 == Computer Board
 	private int[][] board1, board2;
+	/*Constructor
+	Creates 10x10 boards for human and computer
 	
+	*/
 	public Board() 
 	{
 	    int x=10;
 	    board1 = new int[x][x];
 	    board2 = new int[x][x];      
 	}	
-	
+	//Getters for Board1 and Board2
 	public int[][] getBoard1() 
 	{
 		return board1;
 	}
+	public int[][] getBoard2() 
+	{
+		return board2;
+	}
 	
+	//Setters for individual locations on Board1 and Board2
 	public void setBoard1(int i,int j,int value) 
 	{
 		this.board1[i][j]=value;
@@ -28,10 +35,11 @@ public class Board
 		this.board2[i][j]=value;
 	}
 	
-	public int[][] getBoard2() 
-	{
-		return board2;
-	}
+	
+	/*Setter for Computer Board
+	Takes start and end tiles for ships and places the ships
+	Populates the area around the ships as empty sea
+	*/
 	
 	public void setBoardComputer(Tile t1,Tile t2) 
 	{
@@ -51,7 +59,10 @@ public class Board
     		if(getBoard2()[i][j]!=1 && getBoard2()[i][j]!=2)
     				setBoard2(i,j,0);	
 	}
-	
+	/*Setter for Human Board
+	Takes start and end tiles for ships and places the ships
+	Populates the area around the ships as empty sea
+	*/
 	public void setBoardHuman(Tile t1,Tile t2)
 	{ 
 	    if (t1.getX()==t2.getX())
@@ -80,7 +91,7 @@ public class Board
 	    			setBoard1(i,j,0);
 	    	}	
 	}
-	
+	//Checks whether the given coordinates are within bounds
 	public  boolean inBounds(Tile location) 
 	{
 		if( location.getX() >= 0 && location.getX() < 10 && location.getY() >= 0 && location.getY() < 10)
@@ -91,14 +102,14 @@ public class Board
 	
 /* Legend: 
 0 - empty location 
-1 - Player's ship - print (@) 
-2 - Computer's ship. 
-3 - Sunk computer ship - print (!) 
-4 - Sunk player's ship - print (x) 
-5 - Player missed - print (-) 
-8 - Computer missed 
-9 - Both player and computer missed this spot - print (-) 
+1 - Player's ship - print (#) 
+2 - Computer's ship(@). 
+3 - Sunk ship - print (!) 
+4 - Miss - print (~) 
+ 
 */
+	
+	//Print the board
 	
 	public void printBoard() 
 	{
