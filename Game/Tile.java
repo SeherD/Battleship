@@ -4,7 +4,7 @@ package Game;
 
 public class Tile {
 	
-	//private Ship piece; 
+	// Coordinates from one tile on the battleship board 
 	private int x; 
 	private int y;
 	
