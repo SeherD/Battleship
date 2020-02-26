@@ -26,14 +26,18 @@ public class Tile {
 	    this.y=y;		
 	} 
 	
-	public  Tile createLocation(String input) 
+	/* 
+	User inputs of the coordinates in the form of number pairs x,y are taken in.
+	X- and Y- coordinates are then seperated.
+	*/
+	public Tile createLocation(String input) 
 	{
 	    int row = Integer.parseInt(input.split(",")[0].trim());
 	    int col = Integer.parseInt(input.split(",")[1].trim());
 	    return new Tile(row, col);
 	}
 	
-	// The following methods are getters and setters for X and Y coordinates.
+	// The following methods are getters and setters for X- and Y- coordinates.
 	public int getX() 
 	{ 
 	    return this.x; 
