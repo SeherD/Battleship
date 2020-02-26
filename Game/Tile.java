@@ -4,16 +4,21 @@ package Game;
 
 public class Tile {
 	
-	// Coordinates from one tile on the battleship board 
+	/* 
+	Instance variables:
+	X- and Y- coordinates of one tile on the battleship board 
+	*/
 	private int x; 
 	private int y;
 	
+	// Constructor with no argument.
 	public Tile()
 	{
 		this.x=0;
 		this.y=0;
 	}
 	
+	// Constructor with values of X- and Y- coordinates
 	public Tile(int x, int y) 
 	{ 
 	    //this.setPiece(piece); 
