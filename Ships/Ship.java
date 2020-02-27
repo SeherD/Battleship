@@ -12,9 +12,9 @@ public abstract class Ship
 	protected Tile startTile;
 	protected Tile endTile;
 	protected Board b = new Board();
-	
+	//blank default constructor
 	public Ship() {}
-	
+	//parameterised constructor to intialise startTile, endTile,player
 	public Ship(Tile startTile, Tile endTile, String player) 
 	{
 		super();
@@ -22,7 +22,7 @@ public abstract class Ship
 		this.startTile = startTile;
 		this.endTile = endTile;
 	}	
-
+	//getters and setters for all the atributes of the class
 	public Tile getStartTile() 
 	{
 		return startTile;
