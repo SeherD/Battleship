@@ -4,6 +4,7 @@ import Game.Tile;
 
 /* 
  * Destroyer is one of the five ships on each side.
+ * The destroyer ship has a size of 3 tiles
  * This class is a sub class of Ship.
 */ 
 public class Destroyer extends Ship
