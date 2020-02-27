@@ -9,7 +9,7 @@ import Ships.*;
 //import Control.Utilities;
 
 public  class Turn {
-	
+	//attributes
 	private Board b= new Board();
 	private Scanner kb= new Scanner(System.in);
 	private Tile t=new Tile();
@@ -22,7 +22,7 @@ public  class Turn {
 	private int computerShipsRemaining = 17;
 	private int humanShipsRemaining = 17;
 	
-	
+	//getters for computer and human ships
 	public int getComputerShipsRemaining() {
 		return computerShipsRemaining;
 	}
@@ -30,10 +30,11 @@ public  class Turn {
 	public int getHumanShipsRemaining() {
 		return humanShipsRemaining;
 	}
-
+	//checks if tile is empty to avoid overlap
 	public boolean isTileEmpty(Tile t) {
 		return b.getBoard1()[t.getX()][t.getY()] == 0;}
 	
+	//checks if the space between two tiles is empty
 	public boolean isMiddleEmpty(Tile t1, Tile t2) {
 		
 	    if (t1.getX()==t2.getX())
@@ -49,7 +50,7 @@ public  class Turn {
 	    return true;
 	   
 }
-	
+	//checks is the coordinates entered by the user are spaced correctly
 	public boolean checkLength(Tile tile1, Tile tile2, Ship ship) {
 		
 		if (Math.abs(tile1.getX()-tile2.getX())==ship.getShipSize() && Math.abs(tile1.getY()-tile2.getY())==0)
@@ -58,6 +59,7 @@ public  class Turn {
 			return true;
 		return false;}
 	
+	//director function to get user ships
 	public void getUserShips() {
 		Tile tile1=new Tile();
 		Tile tile2=new Tile();
@@ -67,7 +69,7 @@ public  class Turn {
 			getInputShips(tile1, tile2,player,ships[i]) ;
 		
 		}
-		
+	//function that consists of a do while loop that prompts the user for start and end coordinates of the ships	
 	public void getInputShips(Tile tile1,Tile tile2,String player,Ship ship) {
 		do {
 			do {
@@ -102,7 +104,7 @@ public  class Turn {
 			}while(!checkLength(tile1, tile2,ship));
 			
 	}
-		
+	//director function to get computer ships	
 	public void getComputerShips() {
 		Tile tile1=new Tile();
 		Tile tile2=new Tile();
@@ -110,7 +112,7 @@ public  class Turn {
 		
 		getInputComputer( tile1,tile2,player);
 	}
-		
+	//function that randomizes the ships using cells to prevent overlap	
 	public void getInputComputer(Tile tile1,Tile tile2,String player) {
 		Random rand = new Random();
 		Tile tile3 = new Tile();
@@ -230,7 +232,7 @@ public  class Turn {
 		}
         b.printBoard();
     }
-
+	//prompts the user for coordinates to shoot at
 	public void humanTurn() {
 		//Each side has 5 times of fires.
 			Tile tile1=new Tile();
@@ -277,7 +279,9 @@ public  class Turn {
 						//this.computerShipsRemaining -= 1;
 				 b.printBoard();
 				} 
-			
+	
+	
+	//prompts the computer for coordinates to shoot at		
 	public void computerTurn() {
 	//Each side has 5 times of fires.
 		 
@@ -333,7 +337,7 @@ public  class Turn {
 				//this.humanShipsRemaining -= 1;
 		b.printBoard();
 	}
-
+	//controls switching of turns,alternating between user and computer till all ships are sunk  
 	public void switchTurns() 
 	{
 		// Switch turns based on the number of remaining human and computer ships. 
