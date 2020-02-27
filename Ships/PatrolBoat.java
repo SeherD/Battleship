@@ -4,6 +4,7 @@ import Game.*;
 
 /* 
  * Patrol boat is one of the five ships on each side.
+ * The patrol boat has a size of 2 tiles
  * This class is a sub class of Ship.
 */ 
 public class PatrolBoat extends Ship 
