@@ -1,5 +1,4 @@
 # Battleship
-Battleship game by T2G6
 Battleship is a collection of classes that work together to simulate the classic board game, Battleship.
 
 # Description
@@ -15,7 +14,7 @@ Download the following packages in the same folder: Control, Game, Player and Sh
 The input is expected in the following forms to prompt the user for  locations of where they want to place their battleships and where they want to attack, the game is played on a board size of 10x10. When asked for inputs of the start coordinate, enter the number pair in the form of x, y. When asked for the inputs of the end coordinates, enter the number pair in the form x, y (End coordinates will depend on the size of the ship, for Example: "Enter the end cordinates of the Carrier 5" the #5 indicates the ship's size), and once all ships are placed on the board, users will be prompted to enter in coordinates in the form x, y for where they would like to target their opponent. The goal of the user is to hit all locations of the opponents ships without losing their ships first. If all ships of a player have been destroyed, the game will end and the player with surviving ships wins.
 
 # Authors
-Seher Dawar, Tian Xia, Spencer Luong and Jessica Tran
+T2G6: Seher Dawar, Tian Xia, Spencer Luong and Jessica Tran
 
 # Year
 Project started Feburary 2020, Status: In progress 
