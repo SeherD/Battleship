@@ -4,6 +4,7 @@ import Game.*;
 
 /* 
  * Carrier is one of the five ships on each side.
+ * The Carrier ship has size of 5 tiles.
  * This class is a sub class of Ship.
 */ 
 public class Carrier extends Ship 
