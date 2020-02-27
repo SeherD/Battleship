@@ -1,5 +1,6 @@
 # Battleship
 Battleship is a collection of classes that work together to simulate the classic board game, Battleship.
+The project can be found at https://github.com/SeherD/Battleship.git
 
 # Description
 The Control package contains, Launcher.java that starts the game and Utilities.java that provide start and end game messages.
