@@ -2,6 +2,7 @@ package Ships;
 
 import Game.*;
 
+// This is the abstract parent class for the 5 sub classes of different ships.
 public abstract class Ship 
 {
 	protected String shipName;
