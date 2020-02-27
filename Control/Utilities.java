@@ -14,7 +14,7 @@ public class Utilities {
 	   	System.out.println("\t\t\t**     WELCOME TO BATTLESHIP GAME!!    **");
 	    	System.out.println("\t\t\t**  (Presented by Tutorial 2 Group 6)  **");
 	    	System.out.println("\t\t\t*****************************************\n");
-	    	System.out.println("\t\t\tAt the moment, there is no ship in the see.\n");
+	    	System.out.println("\t\t\tAt the moment, there is no ship in the sea.\n");
 	    	board.printBoard();
 	}
 	
