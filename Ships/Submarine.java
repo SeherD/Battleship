@@ -4,6 +4,7 @@ import Game.Tile;
 
 /* 
  * Submarine is one of the five ships on each side.
+ * The Submarine ship has a size of 3 tiles
  * This class is a sub class of Ship.
 */ 
 public class Submarine extends Ship 
