@@ -108,9 +108,10 @@ public class Board
 4 - Miss - print (~) 
  
 */
-	
-	//Print the board
-	
+	/*
+	Print the board
+	Each element of the 2D array is assigned a value and is printed based on that value, according to the above legend.
+	*/
 	public void printBoard() 
 	{
 		System.out.println("     0  1  2  3  4  5  6  7  8  9 \t\t     0  1  2  3  4  5  6  7  8  9  ");
@@ -151,7 +152,7 @@ public class Board
 			System.out.println("     0  1  2  3  4  5  6  7  8  9 \t\t     0  1  2  3  4  5  6  7  8  9  ");
 			System.out.println("             Human Board          \t\t             Computer Board ");
 	}
-
+	/*
 	public void printBoard(int z) 
 	{
 		System.out.println("     0  1  2  3  4  5  6  7  8  9 \t\t     0  1  2  3  4  5  6  7  8  9  ");
@@ -179,7 +180,7 @@ public class Board
 			System.out.println("     0  1  2  3  4  5  6  7  8  9 \t\t     0  1  2  3  4  5  6  7  8  9  ");
 			System.out.println("             Human Board          \t\t             Computer Board ");
 	}
-	
+	*/
 	/*
 	public static void main(String args[])
 	{ 
