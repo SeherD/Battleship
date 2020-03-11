@@ -19,4 +19,4 @@ Once all ships are placed on the board, users will be able to attack their oppon
 T2G6: Seher Dawar, Tian Xia, Spencer Luong and Jessica Tran
 
 # Year
-Project started in Feburary 2020, Status: Text-based version completed. GUI-based version in progress.
+Project started in February 2020, Status: Text-based version completed. GUI-based version in progress.
