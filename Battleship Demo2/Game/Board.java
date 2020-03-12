@@ -6,6 +6,10 @@ public class Board
 {	private Tile t=new Tile();
 	private int[][] board1, board2;
 	
+	 /*
+	 * Constructor Creates 10x10 boards for human and computer
+	 * 
+	 */
 	public Board() 
 	{
 	    int x=10;
@@ -33,6 +37,10 @@ public class Board
 		return board2;
 	}
 	
+	 /*
+	 * Setter for Computer Board Takes start and end tiles for ships and places the
+	 * ships Populates the area around the ships as empty sea
+	 */
 	public void setBoardComputer(Tile t1,Tile t2) 
 	{
 
@@ -53,6 +61,10 @@ public class Board
     				setBoard2(i,j,0);	
 	}
 	
+	 /*
+	 * Setter for Human Board Takes start and end tiles for ships and places the
+	 * ships Populates the area around the ships as empty sea
+	 */
 	public void setBoardHuman(Tile t1,Tile t2)
 	{ 
 	    if (t1.getX()==t2.getX())
