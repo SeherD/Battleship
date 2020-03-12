@@ -9,7 +9,6 @@ public class Tile {
 	private int y;
 	private String name = "error";
 	
-	}
 	// Constructor with no argument.
 	public Tile()
 	{
@@ -69,6 +68,7 @@ public class Tile {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
 }
 	    
 	   /* @Override
