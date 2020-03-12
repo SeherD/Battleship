@@ -7,30 +7,28 @@ public class Tile {
 	//private Ship piece; 
 	private int x; 
 	private int y;
-private String name = "error";
+	private String name = "error";
 	
-	public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
+	}
 	// Constructor with no argument.
 	public Tile()
 	{
 		this.x=0;
 		this.y=0;
 	}
+	// Copy constructor.
 	public Tile(Tile toCopy) {
 		this.x = toCopy.x;
 		this.y = toCopy.y;
 	}
+	// Constructor with x and y as coordinates.
 	public Tile(int x, int y) 
 	{ 
 	    //this.setPiece(piece); 
 	    this.x=x;
 	    this.y=y;		
-	} 
+	}
+	// Constructor with 3 arguments, x, y and name.
 	public Tile(int x, int y, String name) 
 	{ 
 	    //this.setPiece(piece); 
@@ -65,7 +63,12 @@ public void setName(String name) {
 	public void setY(int y) 
 	{ 
 	    this.y = y; 
-	}	
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 }
 	    
 	   /* @Override
