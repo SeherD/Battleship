@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Game.Board;
 import Game.Tile;
 
-
 // This is a abstract parent class for all the ships.
 public abstract class Ship 
 {
@@ -20,15 +19,18 @@ public abstract class Ship
 	protected ArrayList<Tile> coordList= new ArrayList<Tile> (shipSize);
 	//Tuple t=new Tuple(double, int, int);
 	
-	/*public ArrayList<Integer> getLocation() {
+	/*
+	public ArrayList<Integer> getLocation()
+	{
 		return location;
 	}
-
-	public void setLocation(int location) {
-		
+	
+	public void setLocation(int location)
+	{
 		this.location.add(location);
-	}*/
-
+	}
+	*/
+	
 	public Ship() {}
 	
 	public Ship(Tile startTile, Tile endTile, String player) 
@@ -37,29 +39,30 @@ public abstract class Ship
 		this.player = player;
 		this.startTile = startTile;
 		this.endTile = endTile;
-	}	
-
+	}
+	
 	public Tile getStartTile() 
 	{
 		return startTile;
 	}
-
+	
 	public void setStartTile(Tile startTile) 
 	{
 		this.startTile = startTile;
 	}
-
+	
 	public Tile getEndTile() 
 	{
 		return endTile;
 	}
-
+	
 	public void setEndTile(Tile endTile) 
 	{
 		this.endTile = endTile;
 	}
-
-	public String getShipName() {
+	
+	public String getShipName()
+	{
 		return shipName;
 	}
 	
@@ -72,6 +75,7 @@ public abstract class Ship
 	{
 		return shipSize;
 	}
+	
 	public void setShipSize(int shipSize) 
 	{
 		this.shipSize = shipSize;
@@ -87,7 +91,8 @@ public abstract class Ship
 		this.tile = tile;
 	}
 	
-	public char getId() {
+	public char getId()
+	{
 		return id;
 	}
 	
@@ -106,21 +111,29 @@ public abstract class Ship
 		this.player = player;
 	}
 	
-	public ArrayList<Tile> getCoordList() {
+	public ArrayList<Tile> getCoordList()
+	{
 		return coordList;
 	}
-	public void setCoordList(ArrayList<Tile> coordList) {
+	
+	public void setCoordList(ArrayList<Tile> coordList)
+	{
 		this.coordList = coordList;
 	}
+	
 	public void addCoord(Tile coord)
 	{
 		this.coordList.add(new Tile(coord));
 	}
+	
 	public void removeCoord(Tile coord)
 	{
 		this.coordList.remove(new Tile(coord));
 	}
-	/*public void shoot(int x, int y) {
+	
+	/*
+	public void shoot(int x, int y)
+	{
 		location.remove(location.size()-1);
 		location.remove(location.size()-1);
 		for(int i=0;i<location.size()-1;i++)
@@ -128,17 +141,22 @@ public abstract class Ship
 			System.out.print(location.get(i)+",");
 			if((i+1)<10)
 			if(location.get(i)==x && location.get(i+1)==y)
-				{location.remove(i);
-				location.remove(i+1);
-				System.out.println(shipName);
+				{
+					location.remove(i);
+					location.remove(i+1);
+					System.out.println(shipName);
 				}
-	}}
-	public boolean sink() {
+		}
+	}
+	
+	public boolean sink()
+	{
 		if(location.size()==0)
-			{System.out.println(shipName+"sunk");
-			return true;}
-		
+			{
+				System.out.println(shipName+"sunk");
+				return true;
+			}
 		return false;
-		
-	}*/
+	}
+	*/
 }
