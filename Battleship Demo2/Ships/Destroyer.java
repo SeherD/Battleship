@@ -12,12 +12,13 @@ public class Destroyer extends Ship
 	private final int SHIP_SIZE = 3;
 	private final char ID = 'D';
 	
+	//Constructor with no parameter.
 	public Destroyer() 
 	{
-    	super();
-    	shipName = SHIP_NAME;
-    	shipSize = SHIP_SIZE;
-    	id = ID;
+    	    super();
+    	    shipName = SHIP_NAME;
+    	    shipSize = SHIP_SIZE;
+    	    id = ID;
 	}
 	
 	public Destroyer( Tile a, Tile b,String player)
