@@ -21,11 +21,15 @@ public class Destroyer extends Ship
     	    id = ID;
 	}
 	
+	/* 
+	* Constructor with parameters: 
+	* 1: Start tile, 2: End tile, 3: player.
+	*/ 
 	public Destroyer( Tile a, Tile b,String player)
-	{	
-		super(a, b, player);
-		shipName = SHIP_NAME;
-		this.shipSize = SHIP_SIZE;
-		this.id = ID;	
+	{
+	    super(a, b, player);
+	    shipName = SHIP_NAME;
+	    this.shipSize = SHIP_SIZE;
+	    this.id = ID;	
 	}
 }
