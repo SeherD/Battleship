@@ -8,7 +8,7 @@ import Game.Tile;
 */ 
 public class Submarine extends Ship 
 {
-	private final String SHIP_NAME = "Submarine";
+    private final String SHIP_NAME = "Submarine";
     private final int SHIP_SIZE = 3;
     private final char ID = 'S';
     
