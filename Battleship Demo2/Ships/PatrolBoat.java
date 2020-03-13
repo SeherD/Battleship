@@ -12,10 +12,11 @@ public class PatrolBoat extends Ship
     private final int SHIP_SIZE = 2;
     private final char ID = 'P';
     
+    //Constructor with no parameter.
     public PatrolBoat() 
     {
-		super();
-		shipName = SHIP_NAME;
+	super();
+	shipName = SHIP_NAME;
     	shipSize = SHIP_SIZE;
     	id = ID;
     }
