@@ -21,14 +21,14 @@ public class Carrier extends Ship
     }
     
     /* 
-     * Constructor with parameters: 
-     * 1) Start tile, 2) End tile and 3) player.
+    * Constructor with parameters: 
+    * 1: Start tile, 2: End tile, 3: player.
     */ 
-	public Carrier( Tile a, Tile b, String player)
-	{	
-		super(a, b, player);
-	    shipName = SHIP_NAME;
-	    this.shipSize = SHIP_SIZE;
-	    this.id = ID;
-	}
+    public Carrier( Tile a, Tile b, String player)
+    {
+	super(a, b, player);
+	shipName = SHIP_NAME;
+	this.shipSize = SHIP_SIZE;
+	this.id = ID;
+    }
 }
