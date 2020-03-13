@@ -431,18 +431,40 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 			String tileBelongsTo = tileBelongsTo(x,y,computerAllTiles);
 			if (tileBelongsTo.equalsIgnoreCase("Carrier")){
 				computerCarrierHealth -= 1;
+				if (computerCarrierHealth == 0) {
+					System.out.println("Computer carrier has been sunken!");
+					
+						labelString2="computer carrier has been sunken!"+"\n";
+				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Battleship")) {
 				computerCruiserHealth -= 1;
+				if (computerCruiserHealth == 0) {
+					System.out.println("Computer cruier has been sunken!");
+					labelString2="computer cruiser has been sunken!"+"\n";
+				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Destroyer")) {
 				computerDestroyerHealth -= 1;
+				if (computerDestroyerHealth == 0) {
+					System.out.println("Computer destroyer has been sunken!");
+					labelString2="computer destroyer has been sunken!"+"\n";
+				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Submarine")) {
 				computerSubmarineHealth -= 1;
+				
+				if (computerSubmarineHealth == 0) {
+					System.out.println("Computer submarine has been sunken!");
+					labelString2="computer submarine has been sunken!"+"\n";
+				}
 			}else if (tileBelongsTo.equalsIgnoreCase("PatrolBoat")) {
 				computerPatrolBoatHealth -= 1;
+				if (computerPatrolBoatHealth == 0) {
+					System.out.println("Computer patrol boat has been sunken!");
+					labelString2="computer patrol boat has been sunken!"+"\n";
+				}
 			}
 			
 			computerShipsRemaining -= 1;
-			
+			label2.setText(labelString2);
 			System.out.println("computer Carrier health "+computerCarrierHealth);
 			System.out.println("computer Cruiser health "+computerCruiserHealth);
 			System.out.println("computer Destroyer health "+computerDestroyerHealth);
@@ -450,39 +472,45 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 			System.out.println("computer PatrolBoat health "+computerPatrolBoatHealth);
 			label1.setText("computer Carrier health "+computerCarrierHealth+"\n"+"computer Cruiser health "+computerCruiserHealth+"\n"+"computer Destroyer health "+computerDestroyerHealth+"\n"+"computer Submarine health "+computerSubmarineHealth+"\n"+"computer PatrolBoat health "+computerPatrolBoatHealth);
 			
-			if (computerCarrierHealth == 0) {
-				System.out.println("Computer carrier has been sunken!");
-				labelString2="computer carrier has been sunken!"+"\n";
-			}
-			
-			if (computerCruiserHealth == 0) {
-				System.out.println("Computer cruier has been sunken!");
-				labelString2="computer cruiser has been sunken!"+"\n";
-			}
-			
-			if (computerDestroyerHealth == 0) {
-				System.out.println("Computer destroyer has been sunken!");
-				labelString2="computer destroyer has been sunken!"+"\n";
-			}
-			
-			if (computerSubmarineHealth == 0) {
-				System.out.println("Computer submarine has been sunken!");
-				labelString2="computer submarine has been sunken!"+"\n";
-			}
-			
-			if (computerPatrolBoatHealth == 0) {
-				System.out.println("Computer patrol boat has been sunken!");
-				labelString2="computer patrol boat has been sunken!"+"\n";
-			}
-			label2.setText(labelString2);
 			System.out.println("computerShipsRemaining "+computerShipsRemaining);
 		}
-		else if (b.getBoard2()[x][y] == 3||b.getBoard2()[x][y] == 4)
-		{	
-			System.out.println("You have already shot here");
 		}
-}
+		
+
+
+public void sinkComputer()
+{
 	
+
+	if (computerCarrierHealth == 0) {
+		System.out.println("Computer carrier has been sunken!");
+		
+			labelString2="computer carrier has been sunken!"+"\n";
+		
+		
+	}
+	
+	if (computerCruiserHealth == 0) {
+		System.out.println("Computer cruier has been sunken!");
+		labelString2="computer cruiser has been sunken!"+"\n";
+	}
+	
+	if (computerDestroyerHealth == 0) {
+		System.out.println("Computer destroyer has been sunken!");
+		labelString2="computer destroyer has been sunken!"+"\n";
+	}
+	
+	if (computerSubmarineHealth == 0) {
+		System.out.println("Computer submarine has been sunken!");
+		labelString2="computer submarine has been sunken!"+"\n";
+	}
+	
+	if (computerPatrolBoatHealth == 0) {
+		System.out.println("Computer patrol boat has been sunken!");
+		labelString2="computer patrol boat has been sunken!"+"\n";
+	}
+	label2.setText(labelString2);
+}
 			
 	public void computerTurn(GridPane grid) {
 	//Each side has 5 times of fires.
@@ -534,14 +562,27 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 			String tileBelongsTo = tileBelongsTo(AIx,AIy,humanAllTiles);
 			if (tileBelongsTo.equalsIgnoreCase("Carrier")){
 				humanCarrierHealth -= 1;
+				if (humanCarrierHealth == 0) {
+					System.out.println("human submarine has been sunken!");
+					labelString2="Human Carrier has been sunken!"+"\n";}
 			}else if (tileBelongsTo.equalsIgnoreCase("Battleship")) {
 				humanCruiserHealth -= 1;
+				if (humanCruiserHealth == 0) {
+					System.out.println("human submarine has been sunken!");
+					labelString2="Human Battleship has been sunken!"+"\n";}
 			}else if (tileBelongsTo.equalsIgnoreCase("Destroyer")) {
 				humanDestroyerHealth -= 1;
+				if (humanDestroyerHealth == 0) {
+					System.out.println("human submarine has been sunken!");
+					labelString2="Human Destroyer has been sunken!"+"\n";}
 			}else if (tileBelongsTo.equalsIgnoreCase("Submarine")) {
-				humanSubmarineHealth -= 1;
+				humanSubmarineHealth -= 1;if (humanSubmarineHealth == 0) {
+					System.out.println("human submarine has been sunken!");
+					labelString2="Human submarine has been sunken!"+"\n";}
 			}else if (tileBelongsTo.equalsIgnoreCase("PatrolBoat")) {
-				humanPatrolBoatHealth -= 1;
+				humanPatrolBoatHealth -= 1;if (humanPatrolBoatHealth == 0) {
+					System.out.println("human submarine has been sunken!");
+					labelString2="Human Patrol Boat has been sunken!"+"\n";}
 			}
 			
 			humanShipsRemaining -= 1;
@@ -552,32 +593,7 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 			System.out.println("human Submarine health "+humanSubmarineHealth);
 			System.out.println("human PatrolBoat health "+humanPatrolBoatHealth);
 			label3.setText("human Carrier health "+humanCarrierHealth+"\n"+"human Cruiser health "+humanCruiserHealth+"\n"+"human Destroyer health "+humanDestroyerHealth+"\n"+"human Submarine health "+humanSubmarineHealth+"\n"+"human PatrolBoat health "+humanPatrolBoatHealth);
-			
-			if (humanCarrierHealth == 0) {
-				System.out.println("human carrier has been sunken!");
-				labelString1+="human carrier has been sunken!"+"/n";
-				
-			}
-			
-			if (humanCruiserHealth == 0) {
-				System.out.println("human cruier has been sunken!");
-				labelString1+="human cruiser has been sunken!"+"/n";
-			}
-			
-			if (humanDestroyerHealth == 0) {
-				System.out.println("human destroyer has been sunken!");
-				labelString1+="human destroyer has been sunken!"+"/n";
-			}
-			
-			if (humanSubmarineHealth == 0) {
-				System.out.println("human submarine has been sunken!");
-				labelString1+="human submarine has been sunken!"+"/n";
-			}
-			
-			if (humanPatrolBoatHealth == 0) {
-				System.out.println("human patrol boat has been sunken!");
-				labelString1+="human patrol boat has been sunken!"+"/n";
-			}
+		
 			
 			label4.setText(labelString1);
 			System.out.println("humanShipsRemaining "+humanShipsRemaining);
