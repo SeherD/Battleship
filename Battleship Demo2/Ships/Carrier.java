@@ -8,7 +8,7 @@ import Game.*;
 */ 
 public class Carrier extends Ship 
 {
-	private final String SHIP_NAME = "Carrier";
+    private final String SHIP_NAME = "Carrier";
     private final int SHIP_SIZE = 5;
     private final char ID = 'C';
     
