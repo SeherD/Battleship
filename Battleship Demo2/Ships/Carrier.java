@@ -23,6 +23,10 @@ public class Carrier extends Ship {
 		id = ID;
 	}
 	
+	/**
+	 * Constructor with 3 parameters: start and end Tiles and player.
+	 * @Constructor
+	 */
 	public Carrier(Tile a, Tile b, String player) {
 		super(a, b, player);
 		shipName = SHIP_NAME;
