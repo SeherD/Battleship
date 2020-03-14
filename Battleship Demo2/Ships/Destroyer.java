@@ -12,6 +12,10 @@ public class Destroyer extends Ship {
 	private final int SHIP_SIZE = 3;
 	private final char ID = 'D';
 	
+	/**
+	 * Constructor with no parameter.
+	 * @Constructor
+	 */
 	public Destroyer() {
 		super();
 		shipName = SHIP_NAME;
