@@ -12,6 +12,10 @@ public class Cruiser extends Ship {
 	private final int SHIP_SIZE = 4;
 	private final char ID = 'B';
 	
+	/**
+	 * Constructor with no parameter.
+	 * @Constructor
+	 */
 	public Cruiser() {
 		super();
 		shipName = SHIP_NAME;
