@@ -2,37 +2,25 @@ package Ships;
 
 import Game.Tile;
 
-/* 
- * Submarine is one of the five ships on each side.
- * This class is a sub class of Ship.
-*/ 
-public class Submarine extends Ship 
-{
-    private final String SHIP_NAME = "Submarine";
-    private final int SHIP_SIZE = 3;
-    private final char ID = 'S';
-    
-    //Constructor with no parameter.
-    public Submarine() 
-    {
-    	super();
-    	shipName = SHIP_NAME;
-    	shipSize = SHIP_SIZE;
-    	id = ID;
-    }
-    
-    /* 
-     * Constructor with parameters: 
-     * 1: Start tile, 2: End tile, 3: player.
-    */ 
-    public Submarine(Tile a, Tile b, String player)
-    {
-    	super(a, b, player);
-	shipName = SHIP_NAME;
-	this.shipSize = SHIP_SIZE;
-	this.id = ID;
-    }
-    
+public class Submarine extends Ship {
+	private final String SHIP_NAME = "Submarine";
+	private final int SHIP_SIZE = 3;
+	private final char ID = 'S';
+	
+	public Submarine() {
+		super();
+		shipName = SHIP_NAME;
+		shipSize = SHIP_SIZE;
+		id = ID;
+	}
+	
+	public Submarine(Tile a, Tile b, String player) {
+		super(a, b, player);
+		shipName = SHIP_NAME;
+		this.shipSize = SHIP_SIZE;
+		this.id = ID;
+	}
+} 
     /*
     @Override
     public String toString() {
@@ -51,4 +39,3 @@ public class Submarine extends Ship
 	System.out.println(s.toString());
     }
     */
-}
