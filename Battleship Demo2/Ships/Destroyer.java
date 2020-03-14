@@ -23,6 +23,10 @@ public class Destroyer extends Ship {
 		id = ID;
 	}
 	
+	/**
+	 * Constructor with 3 parameters: start and end Tiles and player.
+	 * @Constructor
+	 */
 	public Destroyer(Tile a, Tile b, String player) {
 		super(a, b, player);
 		shipName = SHIP_NAME;
