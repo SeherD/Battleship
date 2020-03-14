@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import Game.Board;
 import Game.Tile;
 
-// This is a abstract parent class for all the ships.
-public abstract class Ship 
-{
+/**
+ * This class is an abstract class of core game entity, ship.
+ * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
+ * @version 2.21: GUI March 2020
+ */
+public abstract class Ship {
+	
+	// Instance variables
 	protected String shipName;
 	protected int shipSize;
 	protected char id;
@@ -16,121 +21,91 @@ public abstract class Ship
 	protected Tile startTile;
 	protected Tile endTile;
 	protected Board b = new Board();
-	protected ArrayList<Tile> coordList= new ArrayList<Tile> (shipSize);
-	//Tuple t=new Tuple(double, int, int);
+	protected ArrayList<Tile> coordList = new ArrayList<Tile>(shipSize);
 	
-	/*
-	public ArrayList<Integer> getLocation()
-	{
-		return location;
+	/**
+	 * Constructor with no parameter.
+	 * @Constructor
+	 */
+	public Ship() {
 	}
-	
-	public void setLocation(int location)
-	{
-		this.location.add(location);
-	}
-	*/
-	
-	public Ship() {}
-	
-	public Ship(Tile startTile, Tile endTile, String player) 
-	{
+	/**
+	 * Constructor with 3 parameter, start and end Tiles and player.
+	 * @Constructor
+	 */
+	public Ship(Tile startTile, Tile endTile, String player) {
 		super();
 		this.player = player;
 		this.startTile = startTile;
 		this.endTile = endTile;
 	}
-	
-	public Tile getStartTile() 
-	{
-		return startTile;
-	}
-	
-	public void setStartTile(Tile startTile) 
-	{
-		this.startTile = startTile;
-	}
-	
-	public Tile getEndTile() 
-	{
-		return endTile;
-	}
-	
-	public void setEndTile(Tile endTile) 
-	{
-		this.endTile = endTile;
-	}
-	
-	public String getShipName()
-	{
-		return shipName;
-	}
-	
-	public void setShipName(String shipName) 
-	{
-		this.shipName = shipName;
-	}
-	
-	public int getShipSize() 
-	{
-		return shipSize;
-	}
-	
-	public void setShipSize(int shipSize) 
-	{
-		this.shipSize = shipSize;
-	}
-	
-	public Tile getTile() 
-	{
-		return tile;
-	}
-	
-	public void setTile(Tile tile) 
-	{
-		this.tile = tile;
-	}
-	
-	public char getId()
-	{
-		return id;
-	}
-	
-	public void setId(char id) 
-	{
-		this.id = id;
-	}
-	
-	public String getPlayer() 
-	{
-		return player;
-	}
-	
-	public void setPlayer(String player) 
-	{
-		this.player = player;
-	}
-	
-	public ArrayList<Tile> getCoordList()
-	{
-		return coordList;
-	}
-	
-	public void setCoordList(ArrayList<Tile> coordList)
-	{
-		this.coordList = coordList;
-	}
-	
-	public void addCoord(Tile coord)
-	{
+	/**
+	 * The following 2 methods add and remove Tile from the Ship arrayList.
+	 * @param coord
+	 */
+	public void addCoord(Tile coord) {
 		this.coordList.add(new Tile(coord));
 	}
-	
-	public void removeCoord(Tile coord)
-	{
+	public void removeCoord(Tile coord) {
 		this.coordList.remove(new Tile(coord));
 	}
-	
+	/**
+	 * Setter methods for each individual instance variable.
+	 * @param startTile, endTile, shipName, shipSize, Tile, id, player, coordList
+	 */
+	public void setStartTile(Tile startTile) {
+		this.startTile = startTile;
+	}
+	public void setEndTile(Tile endTile) {
+		this.endTile = endTile;
+	}
+	public void setShipName(String shipName) {
+		this.shipName = shipName;
+	}
+	public void setShipSize(int shipSize) {
+		this.shipSize = shipSize;
+	}
+	public void setTile(Tile tile) {
+		this.tile = tile;
+	}
+	public void setId(char id) {
+		this.id = id;
+	}
+	public void setPlayer(String player) {
+		this.player = player;
+	}
+	public void setCoordList(ArrayList<Tile> coordList) {
+		this.coordList = coordList;
+	}
+	/**
+	 * Getter methods for each individual instance variable.
+	 * @return startTile, endTile, shipName, shipSize, Tile, id, player, coordList
+	 */
+	public Tile getStartTile() {
+		return startTile;
+	}
+	public Tile getEndTile() {
+		return endTile;
+	}
+	public String getShipName() {
+		return shipName;
+	}
+	public int getShipSize() {
+		return shipSize;
+	}
+	public Tile getTile() {
+		return tile;
+	}
+	public char getId() {
+		return id;
+	}
+	public String getPlayer() {
+		return player;
+	}
+	public ArrayList<Tile> getCoordList() {
+		return coordList;
+	}
+}
 	/*
 	public void shoot(int x, int y)
 	{
@@ -159,4 +134,3 @@ public abstract class Ship
 		return false;
 	}
 	*/
-}
