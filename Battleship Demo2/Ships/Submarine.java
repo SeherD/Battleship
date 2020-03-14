@@ -12,6 +12,10 @@ public class Submarine extends Ship {
 	private final int SHIP_SIZE = 3;
 	private final char ID = 'S';
 	
+	/**
+	 * Constructor with no parameter.
+	 * @Constructor
+	 */
 	public Submarine() {
 		super();
 		shipName = SHIP_NAME;
