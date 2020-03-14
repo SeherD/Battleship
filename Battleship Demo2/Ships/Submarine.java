@@ -2,6 +2,11 @@ package Ships;
 
 import Game.Tile;
 
+/**
+ * This class is a child class of Ship.
+ * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
+ * @version 2.21: GUI March 2020
+ */
 public class Submarine extends Ship {
 	private final String SHIP_NAME = "Submarine";
 	private final int SHIP_SIZE = 3;
@@ -20,7 +25,7 @@ public class Submarine extends Ship {
 		this.shipSize = SHIP_SIZE;
 		this.id = ID;
 	}
-} 
+}
     /*
     @Override
     public String toString() {
