@@ -27,12 +27,19 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		Image background = new Image("file:1200x700 MainMenu.png");
 		ImageView imBackground = new ImageView(background);
 		
-        Button startButton = new Button();
-        startButton.setTranslateX(100);
-        startButton.setTranslateY(485);
-        startButton.setGraphic(new ImageView("file:StartButton.png"));
-        startButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-        startButton.setStyle("-fx-background-color: transparent;");
+        Button regularButton = new Button();
+        regularButton.setTranslateX(100);
+        regularButton.setTranslateY(485);
+        regularButton.setGraphic(new ImageView("file:Regular.png"));
+        regularButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+        regularButton.setStyle("-fx-background-color: transparent;");
+        
+        Button timedButton = new Button();
+        timedButton.setTranslateX(100);
+        timedButton.setTranslateY(555);
+        timedButton.setGraphic(new ImageView("file:Timed.png"));
+        timedButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+        timedButton.setStyle("-fx-background-color: transparent;");
        
         Button musicButton = new Button();
         musicButton.setTranslateX(1127);
@@ -42,26 +49,18 @@ public class Main extends Application implements EventHandler<ActionEvent>{
         musicButton.setStyle("-fx-background-color: transparent;");
         	
         Button helpButton = new Button();
-        helpButton.setTranslateX(435);
-        helpButton.setTranslateY(557);
+        helpButton.setTranslateX(415);
+        helpButton.setTranslateY(555);
         helpButton.setGraphic(new ImageView("file:HelpButton.png"));
         helpButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
         helpButton.setStyle("-fx-background-color: transparent;");
-        
-        // This button should be a combo box, it is button right now to show it's placement of scene
-        Button modeButton = new Button();
-        modeButton.setTranslateX(435);
-        modeButton.setTranslateY(485);
-        modeButton.setGraphic(new ImageView("file:ModeButton.png"));
-        modeButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-        modeButton.setStyle("-fx-background-color: transparent;");
          
 		Group root = new Group();
 		root.getChildren().addAll(imBackground);
-		root.getChildren().addAll(startButton);
+		root.getChildren().addAll(regularButton);
 		root.getChildren().addAll(musicButton);
 		root.getChildren().addAll(helpButton);
-		root.getChildren().addAll(modeButton);
+		root.getChildren().addAll(timedButton);
 		
 		Scene scene = new Scene(root, 1200, 700);
 		stage.setScene(scene);
@@ -69,19 +68,25 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		stage.setResizable(false);
 		stage.show();
 		
-		startButton.setOnAction(new EventHandler<ActionEvent>() {
+		regularButton.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
-		// This button will take us to the game play scene
+		// Regular Game Mode
         public void handle(ActionEvent event) {
-			if (event.getSource() == startButton) {
-				startButton.setGraphic(new ImageView("file:StartButtonClicked.png"));
-				startButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-			    startButton.setStyle("-fx-background-color: transparent;");
-				System.out.println("Start Button Clicked");
+			if (event.getSource() == regularButton) {
+				System.out.println("Regular Game Button Clicked");
 				}
 			}
 		});
-		// Not sure how to make this button change from Music ON and Music OFF yet
+		// Timed Game Mode
+				timedButton.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+			        public void handle(ActionEvent event) {
+						if (event.getSource() == timedButton) {
+							System.out.println("Timed Game Button Clicked");
+						}
+					}
+				});	
+		// Not sure how to make this button change from Music ON and Music OFF
 		musicButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 	        public void handle(ActionEvent event) {
@@ -93,27 +98,15 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 				}
 			}
 		});
-		// This button will take us to a new scene for more help options
+		// This button will probably take us to a new scene for more help options
 		helpButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 	        public void handle(ActionEvent event) {
 				if (event.getSource() == helpButton) {
-					helpButton.setGraphic(new ImageView("file:HelpButtonClicked.png"));
-					helpButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-					helpButton.setStyle("-fx-background-color: transparent;");
 					System.out.println("Help Button Clicked");
 				}
 			}
 		});
-		// Mode button should be a combo box
-		modeButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-	        public void handle(ActionEvent event) {
-				if (event.getSource() == modeButton) {
-					System.out.println("Mode Button Clicked");
-				}
-			}
-		});	
 	}
 
 	@Override
