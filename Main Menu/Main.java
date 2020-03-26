@@ -1,3 +1,5 @@
+package battleshipMusic;
+
 import javafx.scene.control.Button;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -7,13 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 
 /**
  * This class, Main extends from Application and implements Event Handler
  * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
  */
 
-public class Main extends Application implements EventHandler<ActionEvent>{
+public class music extends Application implements EventHandler<ActionEvent>{
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -86,15 +91,32 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 						}
 					}
 				});	
-		// Not sure how to make this button change from Music ON and Music OFF
+		
+		Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		
+		// This button changes between Music ON and Music OFF through user interaction
 		musicButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			private boolean musicFlag = true;
+			
 			@Override
 	        public void handle(ActionEvent event) {
-				if (event.getSource() == musicButton) {
+				if (musicFlag == true) {
 					musicButton.setGraphic(new ImageView("file:MusicOFF.png"));
 					musicButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 					musicButton.setStyle("-fx-background-color: transparent;");
+					System.out.println("Music ON");
+					mediaPlayer.play();
+					musicFlag = false;
+				} else if (musicFlag == false) {
+					musicButton.setGraphic(new ImageView("file:MusicON.png"));
+					musicButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+					musicButton.setStyle("-fx-background-color: transparent;");
 					System.out.println("Music OFF");
+					mediaPlayer.stop();
+					musicFlag = true;
 				}
 			}
 		});
