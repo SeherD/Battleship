@@ -16,7 +16,7 @@ import java.io.File;
  * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
  */
 
-public class music extends Application implements EventHandler<ActionEvent>{
+public class Main extends Application implements EventHandler<ActionEvent>{
 	
 	public static void main(String[] args) {
 		launch(args);
