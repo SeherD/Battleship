@@ -161,7 +161,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			return secondaryLayout;
 		
 		}
-	/*private void timedBattleship() {
+	private void timedBattleship() {
 		VBox vbox=new VBox();
 		HBox hbox=new HBox(50);
 		   HBox score=new HBox(20);
@@ -268,7 +268,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		        //scene.setFill(null);
 			  
 	}
-*/
+
    public static void main(String args[]){ 
 	   
       
@@ -466,10 +466,10 @@ private Group MainMenu(Stage stage, Scene normal,Scene timed) {
 			}
 		});
 		try {
-			/*Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
+			Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		*/
+		
 		// This button changes between Music ON and Music OFF through user interaction
 		musicButton.setOnAction(new EventHandler<ActionEvent>() {
 			
