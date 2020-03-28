@@ -67,15 +67,15 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 
 	private void normalBattleship() {
 		 HBox hbox=new HBox(50);
-		  // HBox score=new HBox(20);
+		   HBox score=new HBox(500);
 		   VBox vbox=new VBox(60);
 		   String style1 = "-fx-background-color: #000 000;";
 		   vbox.setStyle(style1);
 		   String style2 = "-fx-background-color: #FFF 000;";
-		   //score.setStyle(style2);
+		   score.setStyle(style2);
 		   hbox.setStyle(style2);
 		  
-		 //  score.getChildren().addAll(turn.getLabel1(),turn.getLabel2(),turn.getLabel3(),turn.getLabel4());
+		 score.getChildren().addAll(turn.getLabel1(),turn.getLabel2());
 		   vbox.prefWidthProperty().bind(stage.widthProperty().multiply(1));
 		  
 		  
@@ -127,7 +127,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			
 			
 			hbox.getChildren().addAll(gridPane1,gridPane2);
-			   vbox.getChildren().addAll(hbox);
+			   vbox.getChildren().addAll(hbox,score);
 			normal=new Scene(vbox,1200,700);
 			stage.setScene(normal);   
 		        //scene.setFill(null);
@@ -164,8 +164,8 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 	private void timedBattleship() {
 		VBox vbox=new VBox();
 		HBox hbox=new HBox(50);
-		   HBox score=new HBox(20);
-		   HBox time=new HBox();
+		   HBox score=new HBox(500);
+		   HBox time=new HBox(10);
 		   int ctr=0;
 		   String style1 = "-fx-background-color: #000 000;";
 		   vbox.setStyle(style1);
@@ -193,7 +193,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		     //Setting the Grid alignment 
 		     gridPane1.setAlignment(Pos.CENTER_LEFT);
 		     gridPane2.setAlignment(Pos.CENTER_RIGHT);
-		     
+		     time.setPadding(new Insets(0,200,0,400));
 		     hbox.setPadding(new Insets(30,30,30,70));
 		    
 		     
@@ -291,7 +291,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			  int y=GridPane.getColumnIndex(btn);
 			  if(event.getButton().equals(MouseButton.PRIMARY)){
 		    		 
-					 System.out.println(""+x+y+ctr);
+					
 					 increment=turn.hship(x, y,btn,gridPane1,turn.getShipArray()[ctr]);
 					 if(increment)
 						 ctr++;
@@ -300,7 +300,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		}
 			  if(event.getButton().equals(MouseButton.SECONDARY)){
 		    		 
-					 System.out.println(""+x+y+ctr);
+					
 					increment=turn.vship(x, y,btn,gridPane1,turn.getShipArray()[ctr]);
 					 if(increment)
 						 ctr++;
@@ -452,8 +452,8 @@ private Group MainMenu(Stage stage, Scene normal,Scene timed) {
 				//startButton.setGraphic(new ImageView("file:StartButtonClicked.png"));
 				//startButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 			    //startButton.setStyle("-fx-background-color: transparent;");
-				System.out.println("Timed Button Clicked");
-				//timedBattleship();
+				
+				timedBattleship();
 				
 			}
 		});
@@ -466,10 +466,10 @@ private Group MainMenu(Stage stage, Scene normal,Scene timed) {
 			}
 		});
 		try {
-			Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
+			/*Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-		
+		*/
 		// This button changes between Music ON and Music OFF through user interaction
 		musicButton.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -481,14 +481,14 @@ private Group MainMenu(Stage stage, Scene normal,Scene timed) {
 					musicButton.setGraphic(new ImageView("file:MusicOFF.png"));
 					musicButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 					musicButton.setStyle("-fx-background-color: transparent;");
-					System.out.println("Music ON");
+					
 					//mediaPlayer.play();
 					musicFlag = false;
 				} else if (musicFlag == false) {
 					musicButton.setGraphic(new ImageView("file:MusicON.png"));
 					musicButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 					musicButton.setStyle("-fx-background-color: transparent;");
-					System.out.println("Music OFF");
+					
 					//mediaPlayer.stop();
 					musicFlag = true;
 				}
@@ -517,7 +517,7 @@ private Group MainMenu(Stage stage, Scene normal,Scene timed) {
 					helpButton.setGraphic(new ImageView("file:HelpButtonClicked.png"));
 					helpButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 					helpButton.setStyle("-fx-background-color: transparent;");
-					System.out.println("Help Button Clicked");
+					
 					stage.setScene(help);
 				}
 			}
