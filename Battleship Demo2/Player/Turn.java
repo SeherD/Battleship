@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 
 //import Control.Utilities;
 
@@ -31,8 +32,8 @@ public  class Turn {
 	Ship ship4=new Submarine();
 	Ship ship5=new PatrolBoat();
 	Ship ships[]= {ship1,ship2,ship3,ship4,ship5};
-	private int computerShipsRemaining = 17;
-	private int humanShipsRemaining = 17;
+	private int computerShipsRemaining = 5;
+	private int humanShipsRemaining = 5;
 	Ship humanCarrier=new Carrier();
 	Ship humanCruiser=new Cruiser();
 	Ship humanDestroyer=new Destroyer();
@@ -64,8 +65,8 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 	private ArrayList<Tile> computerAllTiles = new ArrayList<Tile>(17);
 	private ArrayList<Tile> AI=new ArrayList<Tile>(4);
 	private int AIx,AIy;
-	private Label label1=new Label();
-	private Label label2=new Label();
+	private Label label1=new Label("Human Ships: 5");
+	private Label label2=new Label("Computer Ships: 5");
 	
 	private String labelString1="";
 	private String labelString2="";
@@ -85,7 +86,7 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 				 if(b.getBoard1()[i][j]==1)
 					 down++;
 		 
-		if(top>down)	{System.out.println("top");
+		if(top>down)	{
 			if(this.humanPatrolBoatHealth>0) {
 			for(int i=0;i<10;i++)
 				for (int j=0;j<10;j++) 
@@ -99,7 +100,7 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 					
 		}
 		
-		if(down>top) {System.out.println("bottom");
+		if(down>top) {
 			if(this.humanPatrolBoatHealth>0) {
 				for(int i=9;i>=0;i--)
 					for (int j=9;j>=0;j--) 
@@ -206,6 +207,8 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 	
 	
 	public Label getLabel2() {
+		
+		label2.setFont(Font.font("Cambria", 32));
 		return label2;
 	}
 
@@ -213,6 +216,8 @@ Ship humanships[]= {humanCarrier,humanCruiser,humanDestroyer,humanSubmarine,huma
 
 
 	public Label getLabel1() {
+		label1.setFont(new Font("Cambria", 32));
+		//Use the font method of the Font class
 		return label1;
 	}
 
@@ -393,23 +398,21 @@ public Ship[] getShipArray() {
 			if (tile3.getX() == tile4.getX()) {
 				for (int iy = tile3.getY(); iy < tile4.getY(); iy++) {
 					Tile tile = new Tile(tile3.getX(),iy,computerShips[i].getShipName());
-					System.out.println(tile3.getX()+","+iy);
+					
 					computerShips[i].addCoord(tile);
 					computerAllTiles.add(tile);
 				}
 			}else if (tile3.getY() == tile4.getY()) {
 				for (int ix = tile3.getX(); ix < tile4.getX(); ix++) {
 					Tile tile = new Tile(ix,tile3.getY(),computerShips[i].getShipName());
-					System.out.println(ix+","+tile3.getY());
+					
 					computerShips[i].addCoord(tile);
 					computerAllTiles.add(tile);
 				}
 			}
 			
 
-			System.out.println(computerShips[i].getCoordList().size());
-			System.out.println(computerShips[i].getShipName());
-			System.out.println(computerAllTiles.size());
+		
 			
 		}
 		
@@ -427,13 +430,13 @@ public Ship[] getShipArray() {
 		n.setStyle("-fx-background-color: black;");
 		n.setOnMouseClicked(null);
 		Tile tile = new Tile(x,i,ship.getShipName());
-		System.out.println(x+","+i);
+		
 		ship.addCoord(tile);
 		humanAllTiles.add(tile);}
 	else
 		{
 		
-		System.out.println("hship218");
+	
 		return false;
 		}
 	}
@@ -446,14 +449,14 @@ public Ship[] getShipArray() {
 		n.setStyle("-fx-background-color: black;");
 		n.setOnMouseClicked(null);
 		Tile tile = new Tile(x,i,ship.getShipName());
-		System.out.println(x+","+i);
+		
 		ship.addCoord(tile);
 		humanAllTiles.add(tile);
 		}
 		else
 		{
 			
-			System.out.println("hship235");
+			
 			return false;
 			}
 	
@@ -473,7 +476,7 @@ public Ship[] getShipArray() {
 		n.setStyle("-fx-background-color: black;");
 		n.setOnMouseClicked(null);
 		Tile tile = new Tile(i,y,ship.getShipName());
-		System.out.println(i+","+y);
+		
 		ship.addCoord(tile);
 		humanAllTiles.add(tile);
 		}
@@ -488,7 +491,7 @@ public Ship[] getShipArray() {
 		n.setStyle("-fx-background-color: black;");
 		n.setOnMouseClicked(null);
 		Tile tile = new Tile(i,y,ship.getShipName());
-		System.out.println(i+","+y);
+	
 		ship.addCoord(tile);
 		humanAllTiles.add(tile);
 		}
@@ -498,10 +501,7 @@ public Ship[] getShipArray() {
 		
 	
 	
-			
-		System.out.println(ship.getCoordList().size());
-		System.out.println(ship.getShipName());
-		System.out.println(humanAllTiles.size());
+		
 	b.printBoard();
 	return true;}
 	
@@ -536,8 +536,7 @@ public Ship[] getShipArray() {
 					n.setOnMouseClicked(null);
 					
 				
-	}System.out.println("Nullify");}
-	
+	}}
 	
 	
 	
@@ -550,66 +549,63 @@ public Ship[] getShipArray() {
 		if (b.getBoard2()[x][y] == 0) 
 		{	button.setStyle("-fx-background-color: blue;");
 			button.setOnMouseClicked(null);
-			System.out.println("You missed!");
-			//System.out.println(b.getBoard2()[x][y]);
+		
+			
 			b.setBoard2(x, y, 4);
 		} 
 		else if (b.getBoard2()[x][y] == 2)
 		{	button.setStyle("-fx-background-color: red;");
 			button.setOnMouseClicked(null);
-			System.out.println("You hit the computer's ship!");
-			//System.out.println(b.getBoard2()[x][y]);
+			
 			b.setBoard2(x, y, 3);
 			String tileBelongsTo = tileBelongsTo(x,y,computerAllTiles);
 			if (tileBelongsTo.equalsIgnoreCase("Carrier")){
 				computerCarrierHealth -= 1;
 				if (computerCarrierHealth == 0) {
 					changeColor(grid,"Carrier",computerAllTiles);
-					System.out.println("Computer carrier has been sunken!");
+					computerShipsRemaining -= 1;
+				
 					
-						labelString2="computer carrier has been sunken!"+"\n";
+						
 				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Battleship")) {
 				computerCruiserHealth -= 1;
 				if (computerCruiserHealth == 0) {
 					changeColor(grid,"Battleship",computerAllTiles);
-					System.out.println("Computer cruier has been sunken!");
-					labelString2="computer cruiser has been sunken!"+"\n";
+					computerShipsRemaining -= 1;
+					
+					
 				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Destroyer")) {
 				computerDestroyerHealth -= 1;
 				if (computerDestroyerHealth == 0) {
 					changeColor(grid,"Destroyer",computerAllTiles);
-					System.out.println("Computer destroyer has been sunken!");
-					labelString2="computer destroyer has been sunken!"+"\n";
+					computerShipsRemaining -= 1;
+					
+					
 				}
 			}else if (tileBelongsTo.equalsIgnoreCase("Submarine")) {
 				computerSubmarineHealth -= 1;
 				
 				if (computerSubmarineHealth == 0) {
 					changeColor(grid,"Submarine",computerAllTiles);
-					System.out.println("Computer submarine has been sunken!");
-					labelString2="computer submarine has been sunken!"+"\n";
+					computerShipsRemaining -= 1;
+					
+					
 				}
 			}else if (tileBelongsTo.equalsIgnoreCase("PatrolBoat")) {
 				computerPatrolBoatHealth -= 1;
 				if (computerPatrolBoatHealth == 0) {
 					changeColor(grid,"PatrolBoat",computerAllTiles);
-					System.out.println("Computer patrol boat has been sunken!");
-					labelString2="computer patrol boat has been sunken!"+"\n";
+					computerShipsRemaining -= 1;
+					
+					
 				}
 			}
 			
-			computerShipsRemaining -= 1;
+			labelString2="Computer Ships: "+computerShipsRemaining;
 			label2.setText(labelString2);
-			System.out.println("computer Carrier health "+computerCarrierHealth);
-			System.out.println("computer Cruiser health "+computerCruiserHealth);
-			System.out.println("computer Destroyer health "+computerDestroyerHealth);
-			System.out.println("computer Submarine health "+computerSubmarineHealth);
-			System.out.println("computer PatrolBoat health "+computerPatrolBoatHealth);
-			label1.setText("computer Carrier health "+computerCarrierHealth+"\n"+"computer Cruiser health "+computerCruiserHealth+"\n"+"computer Destroyer health "+computerDestroyerHealth+"\n"+"computer Submarine health "+computerSubmarineHealth+"\n"+"computer PatrolBoat health "+computerPatrolBoatHealth);
-			
-			System.out.println("computerShipsRemaining "+computerShipsRemaining);
+		
 		}
 		}
 		
@@ -645,7 +641,7 @@ public Ship[] getShipArray() {
 				{shoot=predicted.get(ctr);
 				AIx=shoot.getX();
 				AIy=shoot.getY();
-				System.out.println(AIx+""+AIy);}
+		}
 				}
 			
 			
@@ -655,16 +651,15 @@ public Ship[] getShipArray() {
 		{shoot=predicted.get(ctr);
 		AIx=shoot.getX();
 		AIy=shoot.getY();}
-		System.out.println(AIx+""+AIy);
+		
 		}
 	
 		if (b.getBoard1()[AIx][AIy] == 0) 
 		{
-			System.out.println("Computer missed!");
 			Node n=getNodeFromGridPane(grid , AIy, AIx);
 			n.setStyle("-fx-background-color: blue;");
 			n.setOnMouseClicked(null);
-			//System.out.println(b.getBoard1()[x][y]);
+			
 			b.setBoard1(AIx, AIy, 4);
 			
 			
@@ -672,11 +667,11 @@ public Ship[] getShipArray() {
 		} 
 		else if (b.getBoard1()[AIx][AIy] == 1)
 		{	
-			System.out.println("Computer hit your ship!");
+			
 			Node n=getNodeFromGridPane(grid , AIy, AIx);
 			n.setStyle("-fx-background-color: red;");
 			n.setOnMouseClicked(null);
-			//System.out.println(b.getBoard1()[x][y]);
+		
 			b.setBoard1(AIx, AIy, 3);
 			this.makeList(shoot);
 			
@@ -685,6 +680,7 @@ public Ship[] getShipArray() {
 			else {
 				if(!allSink())
 				{this.checkParity();
+				if(ctr<predicted.size()&&ctr-6>=0)
 				shoot=predicted.get(ctr-6);
 			AIx=shoot.getX();
 			AIy=shoot.getY();}
@@ -694,7 +690,7 @@ public Ship[] getShipArray() {
 		}
 		else if (b.getBoard1()[AIx][AIy] == 3||b.getBoard1()[AIx][AIy] == 4)
 		{
-			System.out.println("Computer has already shot here");
+			
 			this.computerAI(grid, ctr);
 			if(predicted.size()>ctr+1)
 			computerTurn(grid, ctr+1);
@@ -713,57 +709,60 @@ public boolean humanSink(Tile shoot,GridPane grid,int ctr) {
 	String tileBelongsTo = tileBelongsTo(AIx,AIy,humanAllTiles);
 	if (tileBelongsTo.equalsIgnoreCase("Carrier")){
 		humanCarrierHealth -= 1;
-		humanShipsRemaining -= 1;
-		System.out.print("line743");
+		
+		
 		if (humanCarrierHealth == 0) {
-			
+			humanShipsRemaining -= 1;
 			changeColor(grid,"Carrier",humanAllTiles);
-		labelString2="Human Carrier has sunk!!"+"\n";
+		
 		
 		
 		return true;
 		}
 	}else if (tileBelongsTo.equalsIgnoreCase("Battleship")) {
 		humanCruiserHealth -= 1;
-		humanShipsRemaining -= 1;
+		
 		
 		if (humanCruiserHealth == 0) {
-			
+			humanShipsRemaining -= 1;
 			changeColor(grid,"Battleship",humanAllTiles);
-			labelString2="Human Battleship has sunk!!"+"\n";
+			
 			
 			return true;}
 	}else if (tileBelongsTo.equalsIgnoreCase("Destroyer")) {
 		humanDestroyerHealth -= 1;
-		humanShipsRemaining -= 1;
+	
 
 		if (humanDestroyerHealth == 0) {
-			
+			humanShipsRemaining -= 1;
 			changeColor(grid,"Destroyer",humanAllTiles);
-			labelString2="Human Destroyer has sunk!"+"\n";
+			
 			 
 			return true;}
 	}else if (tileBelongsTo.equalsIgnoreCase("Submarine")) {
 		humanSubmarineHealth -= 1;
-		humanShipsRemaining -= 1;
+		
 		
 		if (humanSubmarineHealth == 0) {
+			humanShipsRemaining -= 1;
 			changeColor(grid,"Submarine",humanAllTiles);
-			labelString2="Human Submarine has sunk!"+"\n";
+			
 			 
 			return true;}
 	}else if (tileBelongsTo.equalsIgnoreCase("PatrolBoat")) {
 		humanPatrolBoatHealth -= 1;
-		humanShipsRemaining -= 1;
+		
 		
 		if (humanPatrolBoatHealth == 0) {
+			humanShipsRemaining -= 1;
 			changeColor(grid,"PatrolBoat",humanAllTiles);
-			labelString2="Human Patrol Boat has sunk!"+"\n";
+			
 			 
 			return true;}
 	}
 	
-	
+	labelString1="Human Ships: "+humanShipsRemaining;
+	label1.setText(labelString1);
 	return false;
 }
 public void computerAI(GridPane grid,int ctr)
