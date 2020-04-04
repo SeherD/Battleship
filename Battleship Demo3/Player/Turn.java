@@ -114,16 +114,54 @@ public class Turn {
 	 * 
 	 * @return labels
 	 */
-	public Label getLabel1() {
-		// Use the font method of the Font class
-		label1.setFont(new Font("Cambria", 32));
-		return label1;
+		public Label getLabel2() {
+		
+		label2.setStyle("-fx-font-size: 32px;"+ "-fx-font-weight: bold;"+"-fx-text-fill: #FFF FFF;"+"-fx-font-family:Cambria");
+	
+		return label2;
 	}
 
-	public Label getLabel2() {
-		// Use the font method of the Font class
-		label2.setFont(Font.font("Cambria", 32));
-		return label2;
+
+
+
+	public Label getLabel1() {
+		label1.setStyle("-fx-font-size: 32px;"+ "-fx-font-weight: bold;"+"-fx-text-fill: #FFF FFF;"+"-fx-font-family:Cambria");
+		return label1;
+	}
+	 public void newBoard() {
+		 for(int i=0;i<10;i++)
+			 for(int j=0;j<10;j++)
+		 {b.setBoard1(i, j, 0);
+		 b.setBoard2(i, j, 0);}
+		 
+		 this.humanAllTiles.removeAll(humanAllTiles);
+		 this.computerAllTiles.removeAll(computerAllTiles);
+		 computerCarrierHealth = 5;
+		 computerCruiserHealth = 4;
+			computerDestroyerHealth = 3;
+			  computerSubmarineHealth = 3;
+			  computerPatrolBoatHealth = 2;
+			
+			  humanCarrierHealth = 5;
+			  humanCruiserHealth = 4;
+			  humanDestroyerHealth = 3;
+			  humanSubmarineHealth = 3;
+			  humanPatrolBoatHealth = 2;	
+			  computerShipsRemaining = 5;
+				humanShipsRemaining = 5;
+				labelString1="Human Ships: 5";
+				 labelString2="Computer Ships: 5";
+				 label1.setText(labelString1);
+				 label2.setText(labelString2);
+	 }
+	public void cleanboard(GridPane grid ) {
+		for (int i=0;i<10;i++)
+			for (int j=0;j<10;j++) {
+			
+					Node n=getNodeFromGridPane(grid , j, i);
+					if(n!=null)
+					n.setStyle(null);
+			}
 	}
 
 	/**
