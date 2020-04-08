@@ -71,7 +71,7 @@ public  class Turn {
 		}
 	//function that consists of a do while loop that prompts the user for start and end coordinates of the ships	
 	public void getInputShips(Tile tile1,Tile tile2,String player,Ship ship) {
-		do {
+		do {try {
 			do {
 			System.out.println("Enter the start cordinates of the "+ship.getShipName()+" "+ship.getShipSize());
 			String input=kb.nextLine();
@@ -80,6 +80,7 @@ public  class Turn {
 				System.out.println("Location not on board,try again");
 			if(!isTileEmpty(tile1))
 				System.out.println("Location not empty,try again");
+		
 			}while(!b.inBounds(tile1)||!isTileEmpty(tile1));
 			do {
 				System.out.println("Enter the end cordinates of the "+ship.getShipName()+" "+ship.getShipSize());
@@ -89,7 +90,8 @@ public  class Turn {
 					System.out.println("Location not on board,try again");
 				if(!isTileEmpty(tile2))
 					System.out.println("Location not empty,try again");
-				}while(!b.inBounds(tile2)||!isTileEmpty(tile2));
+			
+			}while(!b.inBounds(tile2)||!isTileEmpty(tile2));
 			
 			
 			if (checkLength(tile1, tile2,ship)) {
@@ -100,10 +102,14 @@ public  class Turn {
 				
 			}
 			else 
-				System.out.println("Invalid , try again");
-			}while(!checkLength(tile1, tile2,ship));
+				System.out.println("Invalid , try again");}
+		catch(Exception e) {
+			System.out.println("TryAgain");
+		}
+		}while(!checkLength(tile1, tile2,ship));
+	
+		}
 			
-	}
 	//director function to get computer ships	
 	public void getComputerShips() {
 		Tile tile1=new Tile();
