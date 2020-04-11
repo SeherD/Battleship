@@ -1,7 +1,7 @@
 # Battleship
 Battleship is a collection of classes that work together to simulate the classic board game, Battleship.
 The project can be found at https://github.com/SeherD/Battleship.git
-Please navigate to the folder "Battleship Final GUI" for the GUI code.
+Please navigate to the folder "Battleship Final GUI" for the GUI code and to the folder "Battleship Final Text" for the text-based code.
 
 # Description
 The Control package contains Launcher.java that starts the game/GUI and Utilities.java that provide end game pop up messages. The Game package contains Board.java and Tile.java to form the game board and tile coordinates. The Player Package contains Turn.java that takes user input and places ships and attacks opponent. The Ships Package contains the abstract parent class Ship.java and its 5 sub classes of 5 different kinds of ships in the game: Carrier, Cruiser, Destroyer, PatrolBoat and Submarine.
