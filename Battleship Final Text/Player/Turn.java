@@ -12,7 +12,7 @@ import Ships.*;
  * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
  * @version 2.2: Final Text-based Version
  */
-public class TextTurn {
+public class Turn {
 
 	// Instance variables
 	private Board b = new Board();
