@@ -628,7 +628,7 @@ public class Turn {
 
 	/**
 	 *  The rest of the class is the implementation of game AI.
-	 *  Step 1: AI checks the board and determines whether the top or bottom half has more Ship Tile placed.
+	 *  Step 1: AI checks the board and determines whether the top or bottom half has more Ship Tiles placed.
 	 *  Step 2: Based on Step 1, AI starts from (0,0) or (9,9) to check every second Tile.
 	 *  Step 3: If the Tile checked is a Ship Tile, then AI attacks Tile and Tile is marked as hit.
 	 *  Step 4: AI checks around the hit Tile and see if there is another Ship Tile.
@@ -745,82 +745,104 @@ public class Turn {
 	 * @param grid JavaFx's gridPane
 	 * @param ctr
 	 */
-	public void computerTurn(GridPane grid, int ctr) {
+	public int computerTurn(GridPane grid, int ctr) {
 
 		Tile shoot = null;
-		if (ctr == 0)
+		if(ctr==0)
 			checksShips();
 		else
 			this.checkParity();
-		if (nextShot.size() != 0) {
-			shoot = nextShot.get(0);
-			AIx = shoot.getX();
-			AIy = shoot.getY();
+		if(nextShot.size()!=0)
+		{
+			shoot=nextShot.get(0);
+			AIx=shoot.getX();
+			AIy=shoot.getY();
 			nextShot.remove(0);
-		} else if (potential.size() != 0) {
+		}
+		else if (potential.size()!=0) {
 			computerAI(grid, ctr);
-			if (nextShot.size() != 0) {
-				shoot = nextShot.get(0);
-				AIx = shoot.getX();
-				AIy = shoot.getY();
+			if(nextShot.size()!=0)
+			{
+				shoot=nextShot.get(0);
+				AIx=shoot.getX();
+				AIy=shoot.getY();
 				nextShot.remove(0);
-			} else {
-				if (ctr < predicted.size()) {
-					shoot = predicted.get(ctr);
-					AIx = shoot.getX();
-					AIy = shoot.getY();
+			}
+			else {
+				if(ctr<predicted.size())
+				{shoot=predicted.get(ctr);
+				AIx=shoot.getX();
+				AIy=shoot.getY();
 				}
 			}
 
-		} else {
-			if (ctr < predicted.size()) {
-				shoot = predicted.get(ctr);
-				AIx = shoot.getX();
-				AIy = shoot.getY();
-			}
+
+		}
+		else {
+			if(ctr<predicted.size())
+			{shoot=predicted.get(ctr);
+			AIx=shoot.getX();
+			AIy=shoot.getY();}
 
 		}
 
-		if (b.getBoard1()[AIx][AIy] == 0) {
-			Node n = getNodeFromGridPane(grid, AIy, AIx);
+		if (b.getBoard1()[AIx][AIy] == 0) 
+		{
+			Node n=getNodeFromGridPane(grid , AIy, AIx);
 			n.setStyle("-fx-background-color: blue;");
 			n.setOnMouseClicked(null);
 
 			b.setBoard1(AIx, AIy, 4);
 
-		} else if (b.getBoard1()[AIx][AIy] == 1) {
 
-			Node n = getNodeFromGridPane(grid, AIy, AIx);
+
+		} 
+		else if (b.getBoard1()[AIx][AIy] == 1)
+		{	
+
+			Node n=getNodeFromGridPane(grid , AIy, AIx);
 			n.setStyle("-fx-background-color: red;");
 			n.setOnMouseClicked(null);
 
 			b.setBoard1(AIx, AIy, 3);
 			this.makeList(shoot);
 
-			if (!humanSink(shoot, grid, ctr))
-				computerAI(grid, ctr);
+			if(!humanSink(shoot,grid,ctr))
+				computerAI(grid,ctr);
 			else {
-				if (!allSink()) {
-					this.checkParity();
-					if (ctr < predicted.size() && ctr - 6 >= 0)
-						shoot = predicted.get(ctr - 6);
-					AIx = shoot.getX();
-					AIy = shoot.getY();
-				}
+				if(!allSink())
+				{this.checkParity();
+				if(ctr<predicted.size()&&ctr-6>=0)
+					{shoot=predicted.get(ctr-6);
+					ctr-=6;
+					}
+				AIx=shoot.getX();
+				AIy=shoot.getY();}
 
 			}
 
-		} else if (b.getBoard1()[AIx][AIy] == 3 || b.getBoard1()[AIx][AIy] == 4) {
+		}
+		else if (b.getBoard1()[AIx][AIy] == 3||b.getBoard1()[AIx][AIy] == 4)
+		{
 
 			this.computerAI(grid, ctr);
-			if (predicted.size() > ctr + 1)
-				computerTurn(grid, ctr + 1);
+			if(predicted.size()>ctr+1)
+				{computerTurn(grid, ctr+1);
+				ctr++;
+				}
 			else
-				computerTurn(grid, ctr - 1);
+				{computerTurn(grid, ctr-1);
+				ctr--;
+				}
+
 
 		}
 
+		labelString1="Human Ships: "+humanShipsRemaining;
+		label1.setText(labelString1);
+
 		b.printBoard();
+		return ctr;
 
 	}
 
