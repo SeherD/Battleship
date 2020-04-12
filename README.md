@@ -12,7 +12,7 @@ Go into the folder "Battleship Demo 3" and download the following packages in th
 # Usage
 
 ***Final submission updates:
-The user now has the option to return to the main menu and access the game instruction from the game modes. GUI has changed aesthetically.
+The user now has the option to return to the main menu, change modes and access the game instruction from the game modes.The user can also clear ships and reset the game whenever wanted.There is also a play again feature. GUI has changed aesthetically.
 
 ***Demo 3 updates:
 In the Timed Mode, please click on the timer start button after all the ships are placed on the left board.
