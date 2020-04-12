@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,11 +21,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -36,7 +35,7 @@ import javafx.util.Duration;
  * program is run.
  * 
  * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
- * @version 4.2: Final GUI version. April 2020.
+ * @version 3.3: Improved GUI and AI. March 2020
  */
 public class Launcher extends Application implements EventHandler<ActionEvent> {
 	// Two graidPanes are used to create two boards.
@@ -70,6 +69,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 				"    -fx-font-family: Arial Narrow;" + 
 				"    -fx-font-weight: bold;" + 
 				"    -fx-background-color: #c3c4c4,linear-gradient(#d6d6d6 50%, white 100%),radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);" + 
+
 				"-fx-font-size: 22px;");
 		backButton.setStyle("-fx-text-fill: white;" + 
 				"    -fx-font-family: Arial Narrow;" + 
@@ -79,25 +79,27 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		gridPane1.setPrefSize(500, 500);
 		for (int i = 0; i < 10; i++)
 			gridPane1.getColumnConstraints().add(new ColumnConstraints(50));
-	
+
 		// Board#2 is created on the right for the computer player to place ships.
 		gridPane2.setPrefSize(500, 500);
 		for (int i = 0; i < 10; i++)
 			gridPane2.getColumnConstraints().add(new ColumnConstraints(50));
-		
+
 		// Both boards are set to be visible.
 		gridPane1.setGridLinesVisible(true);
 		gridPane2.setGridLinesVisible(true);
 		gridPane1.setStyle("-fx-padding: 10;" + 
-                "-fx-border-style: solid inside;" + 
-                "-fx-border-width: 4;" +
+				"-fx-border-style: solid inside;" + 
+				"-fx-border-width: 4;" +
+
                 "-fx-border-radius:1;" + 
-                "-fx-border-color: red;");
+				"-fx-border-color: red;");
 		gridPane2.setStyle("-fx-padding: 10;" + 
-                "-fx-border-style: solid inside;" + 
-                "-fx-border-width: 4;" +
+				"-fx-border-style: solid inside;" + 
+				"-fx-border-width: 4;" +
+
                 "-fx-border-radius:1;" + 
-                "-fx-border-color: red;");
+				"-fx-border-color: red;");
 		for (int i = 0; i < 10; i++)
 			for (int j = 0; j < 10; j++) {
 				Button button = new Button();
@@ -127,7 +129,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 	public void start(Stage stage) {
 		this.stage = stage;
 		MainMenu(stage);
-	}
+}
 
 	/**
 	 * This method sets up a new game mode: Regular Mode.
@@ -138,79 +140,84 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		VBox vbox = new VBox(60);
 		String style1 = "-fx-background-color: #000 000;";
 		vbox.setStyle(style1);
-		
+		resetButton.setText("Reset");
 		score.setStyle(style1);
 		hbox.setStyle(style1);
 		handler.check(true,"Normal");
 		turn.newBoard();
 		unnullify(gridPane1,"2");
-		
+
 		turn.cleanboard(gridPane1);
 		turn.cleanboard(gridPane2);
 		turn.nullify(gridPane2);
-		
+
 		vbox.prefWidthProperty().bind(stage.widthProperty().multiply(1));
-		
+
 		gridPane1.setTranslateX(30);
-	
+
 		exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
+
 				MainMenu(stage);
-				
-				}});
-		
-		
+
+			}});
+
+
 		helper.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				helper(stage, "Normal");
-				}});	
+			}});	
 		backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				handler=new HandleButton();
 				turn.newBoard();
 				unnullify(gridPane1,"2");
-			;
+				
 				turn.cleanboard(gridPane1);
 				turn.cleanboard(gridPane2);
 				turn.getComputerShips();
-				
+
 			}
 		});
-		
+
 		resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				handler=new HandleButton();
 				turn.newBoard();
 				unnullify(gridPane1,"2");
-				
+				resetButton.setText("Reset");
 				turn.cleanboard(gridPane1);
 				turn.cleanboard(gridPane2);
 				turn.getComputerShips();
+				backButton.setStyle("-fx-text-fill: white;" + 
+						"    -fx-font-family: Arial Narrow;" + 
+						"    -fx-font-weight: bold;" + 
+						"    -fx-background-color: linear-gradient(#61a2b1, #2A5058);"+
+						"-fx-font-size: 22px;");
 				backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent event) {
 						handler=new HandleButton();
 						turn.newBoard();
 						unnullify(gridPane1,"2");
-						
+
 						turn.cleanboard(gridPane1);
 						turn.cleanboard(gridPane2);
 						turn.getComputerShips();
-						
+
 					}
 				});
-				
+
 			}
 		});
 		score.getChildren().addAll(turn.getLabel1(),helper,backButton,resetButton,exit, turn.getLabel2());
 		// Nested for loops are used to populate two 10x10 boards with 100 buttons.
 		turn.getComputerShips();
-		
+
 		hbox.getChildren().addAll(gridPane1, gridPane2);
 		vbox.getChildren().addAll(hbox, score);
 		normal = new Scene(vbox, 1200, 700);
@@ -225,64 +232,36 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 	 * @param stage JavaFx's stage
 	 * @return VBox JavaFx's VBox
 	 */
+
+
+
 	private void helper(Stage stage, String mode) {
 		// Secondary scene layout
-		Button backButton = new Button("BACK");
+		Button exitButton = new Button();
 		
-		backButton.setStyle("-fx-text-fill: black;" + 
-				"    -fx-font-family: Arial Narrow;" + 
-				"    -fx-font-weight: bold;" + 
-				"    -fx-background-color: #c3c4c4,linear-gradient(#d6d6d6 50%, white 100%),radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);" + 
-				"-fx-font-size: 22px;");
-		
-		backButton.setTranslateX(525);
-		backButton.setTranslateY(60);
-		
+		Image background = new Image("file:HelpMenu.png");
+		ImageView imBackground = new ImageView(background);
 		if(mode=="Normal")
-		backButton.setOnAction(e -> stage.setScene(normal));
+			 exitButton.setOnAction(e -> stage.setScene(normal));
 		if(mode=="Timed")
-			backButton.setOnAction(e -> stage.setScene(timed));
+			 exitButton.setOnAction(e -> stage.setScene(timed));
 		if(mode=="Menu")
-			backButton.setOnAction(e -> stage.setScene(menu));
+			 exitButton.setOnAction(e -> stage.setScene(menu));
 		
-		// Help screen title and message.
-		String helpTitle = "\n" + "\t\t\t\t\t\t" + "GAME INSTRUCTION";
-		String helpMessage = "\n" +
-				"\t\tBattleship is a classic board game that brings back lots of childhood and family memory, as well as the moments of surprise! \n"
-				+ "\n"
-				+ "\t\tSteps: \n"
-				+ "\n"
-				+ "\t\t1. The user will be able place their ships on the left-hand side board. \n"
-				+ "\t\t    Left mouse clicks will place ships horizontally and right mouse clicks will place ships vertically. \n"
-				+ "\n"
-				+ "\t\t2. Computer's ships will be placed on the right-hand side board once all the user's ships have been placed \n"
-				+ "\t\t    Computer's ships are hidden to ensure the game rules and fairness are followed.\n" 
-				+ "\n"
-				+ "\t\t3. Click on the tile of the right-hand side board to attack computer's ships. \n"
-				+ "\t\t    Once a ship is hit, the tile turns red. The tiles would turn grey once a ship is sunken. \n"
-				+ "\n"
-				+ "\t\t4. The game ends when one side's ships are all sunken. \n"
-				+ "\n"
-				+ "\t\tTimed mode: Please ensure to click on the start button to start the timer once you have placed all five ships.\n"
-				+ "\n"
-				+ "\t\tThank you for playing our Battleship game!";
+		
+		exitButton.setTranslateX(1100);
+		exitButton.setTranslateY(30);
+		exitButton.setGraphic(new ImageView("file:ExitButton.png"));
+		exitButton.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+		exitButton.setStyle("-fx-background-color: transparent;");
 
-		// Adjust scene, title and message's styles - font, size and background colour.	
-		Label labelHelpScene = new Label(helpMessage);
-		Label labelHelpTitle = new Label(helpTitle);
-		
-		labelHelpScene.setTextFill(Color.web("WHITE"));
-		labelHelpScene.setFont(new Font("Arial", 18));
-		
-		labelHelpTitle.setTextFill(Color.web("WHITE"));
-		labelHelpTitle.setFont(new Font("Arial", 30));
-		
-		String styleHelp = "-fx-background-color: #000 000;";
+		StackPane root=new StackPane();
+	
 		VBox helpSceneLayout = new VBox(20);
-		helpSceneLayout.setStyle(styleHelp);
 		
-		helpSceneLayout.getChildren().addAll(labelHelpTitle, labelHelpScene, backButton);
-		Scene helper= new Scene(helpSceneLayout,1200,700);
+		helpSceneLayout.getChildren().addAll( exitButton);
+		root.getChildren().addAll(imBackground,helpSceneLayout);
+		Scene helper= new Scene(root,1200,700);
 		stage.setScene(helper) ;
 
 	}
@@ -303,56 +282,58 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		timeSeconds = STARTTIME;
 		timerLabel.setText(timeSeconds.toString());
 		unnullify(gridPane1,"2");
-		
-		
+
+		resetButton.setText("Reset");
 		turn.cleanboard(gridPane2);
-		
-		
+
+
 		String style1 = "-fx-background-color: #000 000;";
 		vbox.setStyle(style1);
 		score.setStyle(style1);
 		hbox.setStyle(style1);
 		time.setStyle(style1);
-		
+
 		vbox.prefWidthProperty().bind(stage.widthProperty().multiply(1));
 
 		turn.humanboard(gridPane1);
-	
-		
+
+
 		score.setPadding(new Insets(0, 200, 0, 400));
-	
+
 		backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				handler=new HandleButton();
 				turn.newBoard();
 				unnullify(gridPane1,"2");
-				
+
 				turn.cleanboard(gridPane1);
-				
-				
+
+
 			}
 		});
-		
+
 		exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
-				
+
+				timeline.stop();
+				timeSeconds = STARTTIME;
+				timerLabel.setText(timeSeconds.toString());
 				MainMenu(stage);
 			}});
 		helper.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				helper(stage, "Timed");
-				}});	
+			}});	
 		Button button = new Button();
 		button.setText("Press after setting ships");
 		button.setStyle("-fx-text-fill: black;" + 
 				"    -fx-font-family: Arial Narrow;" + 
 				"    -fx-font-weight: bold;" + 
 				"    -fx-background-color: #c3c4c4,linear-gradient(#d6d6d6 50%, white 100%),radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);" + 
-				
+
 				"-fx-font-size:18px;");
 		resetButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -360,12 +341,22 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 				handler=new HandleButton();
 				turn.newBoard();
 				unnullify(gridPane1,"2");
-				
+				resetButton.setText("Reset");
 				turn.cleanboard(gridPane1);
 				turn.cleanboard(gridPane2);
-				
-				
-				
+				backButton.setStyle("-fx-text-fill: white;" + 
+						"    -fx-font-family: Arial Narrow;" + 
+						"    -fx-font-weight: bold;" + 
+						"    -fx-background-color: linear-gradient(#61a2b1, #2A5058);"+
+						"-fx-font-size: 22px;");
+
+				button.setStyle("-fx-text-fill: black;" + 
+						"    -fx-font-family: Arial Narrow;" + 
+						"    -fx-font-weight: bold;" + 
+						"    -fx-background-color: #c3c4c4,linear-gradient(#d6d6d6 50%, white 100%),radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);" + 
+
+						"-fx-font-size:18px;");
+
 				timeline.stop();
 				timeSeconds = STARTTIME;
 				timerLabel.setText(timeSeconds.toString());
@@ -375,32 +366,34 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 						handler=new HandleButton();
 						turn.newBoard();
 						unnullify(gridPane1,"2");
-						
+
 						turn.cleanboard(gridPane1);
-						
-						
+
+
 					}
 				});
-				
-			
+
+
 			}
 		});
-		
+
 		// Configure the Label
 		timerLabel.setText(timeSeconds.toString());
 		timerLabel.setTextFill(Color.RED);
 		timerLabel.setStyle("-fx-font-size: 4em;");
 
 		// Create and configure the Button
-		
-		
+
+
 		button.setOnAction(new EventHandler<ActionEvent>() { // Button event handler
 			@Override
 			public void handle(ActionEvent event) {
 				turn.getComputerShips();
 				unnullify(gridPane2, "Timed");
 				timeSeconds = STARTTIME;
-
+				button.setStyle("-fx-text-fill: white;" +
+				"    -fx-background-color: linear-gradient(#ff5400, #be1d00);");
+			
 				// update timerLabel
 				timerLabel.setText(timeSeconds.toString());
 				timeline = new Timeline();
@@ -424,7 +417,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 				timeline.playFromStart();
 			}
 		});
-	
+
 		time.getChildren().addAll(turn.getLabel1(),helper, backButton, resetButton,exit, turn.getLabel2());
 		score.getChildren().addAll(timerLabel, button);
 		hbox.getChildren().addAll(gridPane1, gridPane2);
@@ -482,8 +475,8 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			if (ctr == 5) {
 				turn.nullify(gridPane1);
 				if(mode!="Timed")
-				unnullify(gridPane2, "Normal");
-				
+					unnullify(gridPane2, "Normal");
+
 			}
 		}
 
@@ -500,22 +493,27 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			Button btn = (Button) event.getSource();
 			int x = GridPane.getRowIndex(btn);
 			int y = GridPane.getColumnIndex(btn);
-			
-				
+
+
 			turn.ht(x, y, btn, gridPane2);
 			// turn.sinkComputer();
-			
-			backButton.setOnMouseClicked(null);
-			turn.computerTurn(gridPane1, ctr);
-			ctr++;
-			
-			
 			if (turn.getHumanShipsRemaining() <= 0 || turn.getComputerShipsRemaining() <= 0) {
 				turn.nullify(gridPane2);
 				ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
 				resetButton.setText("Play Again");
 			}
 
+			backButton.setOnMouseClicked(null);
+			backButton.setStyle("-fx-text-fill: black;" + 
+					"    -fx-font-family: Arial Narrow;" + 
+					"    -fx-font-weight: bold;" + 
+					"    -fx-background-color: linear-gradient(#000000, #FFFFFF);"+
+					"-fx-font-size: 22px;");
+			ctr=turn.computerTurn(gridPane1, ctr);
+			ctr++;
+
+
+		
 		}
 
 	}
@@ -533,16 +531,23 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			int y = GridPane.getColumnIndex(btn);
 			turn.ht(x, y, btn, gridPane2);
 			// turn.sinkComputer();
-			backButton.setOnMouseClicked(null);
-			turn.computerTurn(gridPane1, ctr);
-			ctr++;
-
+	
 			if (turn.getHumanShipsRemaining() == 0 || turn.getComputerShipsRemaining() == 0) {
 				turn.nullify(gridPane2);
 				ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
 				timeline.stop();
 				resetButton.setText("Play Again");
 			}
+			backButton.setOnMouseClicked(null);
+			backButton.setStyle("-fx-text-fill: black;" + 
+					"    -fx-font-family: Arial Narrow;" + 
+					"    -fx-font-weight: bold;" + 
+					"    -fx-background-color: linear-gradient(#000000, #FFFFFF);"+
+					"-fx-font-size: 22px;");
+			ctr=turn.computerTurn(gridPane1, ctr);
+			ctr++;
+
+		
 
 		}
 
@@ -579,7 +584,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		Image background = new Image("file:1200x700 MainMenu.png");
 		ImageView imBackground = new ImageView(background);
 
-		
+
 		Button exitButton = new Button();
 		exitButton.setTranslateX(1127);
 		exitButton.setTranslateY(3);
@@ -592,7 +597,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		musicButton.setTranslateY(3);
 		musicButton.setGraphic(new ImageView("file:MusicON.png"));
 		musicButton
-				.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+		.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 		musicButton.setStyle("-fx-background-color: transparent;");
 
 		Button helpButton = new Button();
@@ -607,7 +612,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		regularButton.setTranslateY(485);
 		regularButton.setGraphic(new ImageView("file:Regular.png"));
 		regularButton
-				.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+		.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 		regularButton.setStyle("-fx-background-color: transparent;");
 
 		Button timedButton = new Button();
@@ -615,7 +620,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		timedButton.setTranslateY(555);
 		timedButton.setGraphic(new ImageView("file:Timed.png"));
 		timedButton
-				.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+		.setStyle("  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
 		timedButton.setStyle("-fx-background-color: transparent;");
 
 		Group root = new Group();
@@ -646,54 +651,53 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		exitButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
-					stage.close();
-				
+
+				stage.close();
+
 			}
 		});
-		
-		
-		//MUSIC CODE
 
-		Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
-		// This button changes between Music ON and Music OFF through user interaction
-		musicButton.setOnAction(new EventHandler<ActionEvent>() {
+	
+			Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
-			private boolean musicFlag = true;
+			// This button changes between Music ON and Music OFF through user interaction
+			musicButton.setOnAction(new EventHandler<ActionEvent>() {
 
-			@Override
-			public void handle(ActionEvent event) {
-				if (musicFlag == true) {
-					musicButton.setGraphic(new ImageView("file:MusicOFF.png"));
-					musicButton.setStyle(
-							"  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-					musicButton.setStyle("-fx-background-color: transparent;");
+				private boolean musicFlag = true;
 
-					mediaPlayer.play();
-					musicFlag = false;
-				} else if (musicFlag == false) {
-					musicButton.setGraphic(new ImageView("file:MusicON.png"));
-					musicButton.setStyle(
-							"  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
-					musicButton.setStyle("-fx-background-color: transparent;");
+				@Override
+				public void handle(ActionEvent event) {
+					if (musicFlag == true) {
+						musicButton.setGraphic(new ImageView("file:MusicOFF.png"));
+						musicButton.setStyle(
+								"  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+						musicButton.setStyle("-fx-background-color: transparent;");
 
-					mediaPlayer.stop();
-					musicFlag = true;
+						mediaPlayer.play();
+						musicFlag = false;
+					} else if (musicFlag == false) {
+						musicButton.setGraphic(new ImageView("file:MusicON.png"));
+						musicButton.setStyle(
+								"  -fx-border-style: none; -fx-border-width: 2px; -fx-border-insets: 0; -fx-font-size:4px");
+						musicButton.setStyle("-fx-background-color: transparent;");
+
+						mediaPlayer.stop();
+						musicFlag = true;
+					}
 				}
-			}
-		});
-
-		//END OF MUSIC CODE
+			});
 		
+		//END OF MUSIC CODE
+
 		// This button will take us to a new scene for more help options
 		helpButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if (event.getSource() == helpButton) {
-				helper(stage,"Menu");
+					helper(stage,"Menu");
 				}
 			}
 		});
@@ -707,6 +711,6 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent arg0) {
-		
+
 	}
 }
