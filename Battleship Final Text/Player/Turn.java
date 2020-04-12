@@ -159,76 +159,82 @@ public class Turn {
 	 */
 	public void getInputShips(Tile tile1, Tile tile2, String player, Ship ship) {
 		do {
-			do {
-				System.out.println("");
-				System.out.println("Please enter the start cordinates of the " + ship.getShipName() + ". Length: " + ship.getShipSize());
-				System.out.println("(Ensure coordinates are in the format of row,column For example: 1,1)");
-				String input1 = kb.nextLine();
-				tile1 = t.createLocation(input1);
-				if (!b.inBounds(tile1))
-					System.out.println("Location not on board,try again");
-				if (!isTileEmpty(tile1))
-					System.out.println("Location not empty,try again");
-			} while (!b.inBounds(tile1) || !isTileEmpty(tile1));
+			try {
+				do {
+					System.out.println("");
+					System.out.println("Please enter the start cordinates of the " + ship.getShipName() + ". Length: "
+							+ ship.getShipSize());
+					System.out.println("(Ensure coordinates are in the format of row,column For example: 1,1)");
+					String input1 = kb.nextLine();
+					tile1 = t.createLocation(input1);
+					if (!b.inBounds(tile1))
+						System.out.println("Location not on board,try again");
+					if (!isTileEmpty(tile1))
+						System.out.println("Location not empty,try again");
+				} while (!b.inBounds(tile1) || !isTileEmpty(tile1));
 
-			do {
-				System.out.println("");
-				System.out.println("Please enter the end cordinates of the " + ship.getShipName() + ". Length: " + ship.getShipSize());
-				System.out.println("(Ensure coordinates are in the format of row,column For example: 1,1)");
-				System.out.println("Please calculate the end coordinate based on the ship's length.");
-				String input2 = kb.nextLine();
-				tile2 = t.createLocation(input2);
-				if (!b.inBounds(tile2))
-					System.out.println("Location not on board,try again");
-				if (!isTileEmpty(tile2))
-					System.out.println("Location not empty,try again");
-			} while (!b.inBounds(tile2) || !isTileEmpty(tile2));
+				do {
+					System.out.println("");
+					System.out.println("Please enter the end cordinates of the " + ship.getShipName() + ". Length: "
+							+ ship.getShipSize());
+					System.out.println("(Ensure coordinates are in the format of row,column For example: 1,1)");
+					System.out.println("Please calculate the end coordinate based on the ship's length.");
+					String input2 = kb.nextLine();
+					tile2 = t.createLocation(input2);
+					if (!b.inBounds(tile2))
+						System.out.println("Location not on board,try again");
+					if (!isTileEmpty(tile2))
+						System.out.println("Location not empty,try again");
+				} while (!b.inBounds(tile2) || !isTileEmpty(tile2));
 
-			if (checkLength(tile1, tile2, ship)) {
-				b.setBoardHuman(tile1, tile2);
-				b.printBoard();
-				if (tile1.getX() == tile2.getX()) {
-					if (tile1.getY() < tile2.getY()) {
-						for (int i = tile1.getY(); i < tile2.getY(); i++) {
-							Tile tile = new Tile(tile1.getX(), i, ship.getShipName());
-							System.out.println(tile1.getX() + "," + i);
-							ship.addCoord(tile);
-							humanAllTiles.add(tile);
-						}
-					} else if (tile1.getY() > tile2.getY()) {
-						for (int i = tile2.getY() + 1; i < tile1.getY(); i++) {
-							Tile tile = new Tile(tile1.getX(), i, ship.getShipName());
-							System.out.println(tile1.getX() + "," + i);
-							ship.addCoord(tile);
-							humanAllTiles.add(tile);
-						}
-					}
-				}
-
-				if (tile1.getY() == tile2.getY()) {
-					if (tile1.getX() < tile2.getX()) {
-						for (int i = tile1.getX(); i < tile2.getX(); i++) {
-							Tile tile = new Tile(i, tile1.getY(), ship.getShipName());
-							System.out.println(i + "," + tile1.getX());
-							ship.addCoord(tile);
-							humanAllTiles.add(tile);
-						}
-					} else if (tile1.getX() > tile2.getX()) {
-						for (int i = tile2.getX(); i < tile1.getX(); i++) {
-							Tile tile = new Tile(i, tile1.getY(), ship.getShipName());
-							System.out.println(i + "," + tile1.getX());
-							ship.addCoord(tile);
-							humanAllTiles.add(tile);
+				if (checkLength(tile1, tile2, ship)) {
+					b.setBoardHuman(tile1, tile2);
+					b.printBoard();
+					if (tile1.getX() == tile2.getX()) {
+						if (tile1.getY() < tile2.getY()) {
+							for (int i = tile1.getY(); i < tile2.getY(); i++) {
+								Tile tile = new Tile(tile1.getX(), i, ship.getShipName());
+								System.out.println(tile1.getX() + "," + i);
+								ship.addCoord(tile);
+								humanAllTiles.add(tile);
+							}
+						} else if (tile1.getY() > tile2.getY()) {
+							for (int i = tile2.getY() + 1; i < tile1.getY(); i++) {
+								Tile tile = new Tile(tile1.getX(), i, ship.getShipName());
+								System.out.println(tile1.getX() + "," + i);
+								ship.addCoord(tile);
+								humanAllTiles.add(tile);
+							}
 						}
 					}
-				}
 
-				System.out.println(ship.getCoordList().size());
-				System.out.println(ship.getShipName());
-				System.out.println(humanAllTiles.size());
+					if (tile1.getY() == tile2.getY()) {
+						if (tile1.getX() < tile2.getX()) {
+							for (int i = tile1.getX(); i < tile2.getX(); i++) {
+								Tile tile = new Tile(i, tile1.getY(), ship.getShipName());
+								System.out.println(i + "," + tile1.getX());
+								ship.addCoord(tile);
+								humanAllTiles.add(tile);
+							}
+						} else if (tile1.getX() > tile2.getX()) {
+							for (int i = tile2.getX(); i < tile1.getX(); i++) {
+								Tile tile = new Tile(i, tile1.getY(), ship.getShipName());
+								System.out.println(i + "," + tile1.getX());
+								ship.addCoord(tile);
+								humanAllTiles.add(tile);
+							}
+						}
+					}
 
-			} else
-				System.out.println("Invalid , try again");
+					System.out.println(ship.getCoordList().size());
+					System.out.println(ship.getShipName());
+					System.out.println(humanAllTiles.size());
+
+				} else
+					System.out.println("Invalid , try again");
+			} catch (Exception e) {
+				System.out.println("Please ensure coordinates are entered in the correct form.");
+			}
 		} while (!checkLength(tile1, tile2, ship));
 
 	}
