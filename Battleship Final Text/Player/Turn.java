@@ -413,13 +413,16 @@ public class Turn {
 		// Each side has 5 times of fires.
 		Tile tile1 = new Tile();
 		do {
-			System.out.println("Enter cordinates to shoot at:");
-			System.out.println("(In the format of **row,column** For example: 1,1)");
-			String input = kb.nextLine();
-			tile1 = t.createLocation(input);
-			if (!b.inBounds(tile1))
-				System.out.println("Location not on board,try again");
-
+			try {
+				System.out.println("Enter cordinates to shoot at:");
+				System.out.println("(In the format of **row,column** For example: 1,1)");
+				String input = kb.nextLine();
+				tile1 = t.createLocation(input);
+				if (!b.inBounds(tile1))
+					System.out.println("Location not on board,try again");
+			} catch (Exception e) {
+				System.out.println("Please ensure coordinates are entered in the correct form.");
+			}
 		} while (!b.inBounds(tile1));
 		// User's input for x and y are needed.
 		int x = tile1.getX();
