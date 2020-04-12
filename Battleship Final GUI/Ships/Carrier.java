@@ -14,7 +14,7 @@ public class Carrier extends Ship {
 
 	/**
 	 * Constructor with no parameter.
-	 * 
+	 * Default constructor
 	 * @Constructor
 	 */
 	public Carrier() {
@@ -34,3 +34,4 @@ public class Carrier extends Ship {
 		this.shipSize = SHIP_SIZE;
 	}
 }
+
