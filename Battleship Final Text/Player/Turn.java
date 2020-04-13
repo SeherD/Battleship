@@ -186,7 +186,8 @@ public class Turn {
 					if (!isTileEmpty(tile2))
 						System.out.println("Location not empty,try again");
 				} while (!b.inBounds(tile2) || !isTileEmpty(tile2));
-
+				
+				// Based on the x and y coordinates, the ship is determined to be horizontal or vertical.
 				if (checkLength(tile1, tile2, ship)) {
 					b.setBoardHuman(tile1, tile2);
 					b.printBoard();
@@ -233,7 +234,11 @@ public class Turn {
 				} else
 					System.out.println("Invalid , try again");
 			} catch (Exception e) {
-				System.out.println("Please ensure coordinates are entered in the correct form.");
+				System.out.println("\t\t******************************************************");
+				System.out.println("\t\t**        Wrong format of coordinates entered       **");
+				System.out.println("\t\t**  Please try again with the format of row,column  **");
+				System.out.println("\t\t**                 For example: 1,1                 **");
+				System.out.println("\t\t******************************************************\n");
 			}
 		} while (!checkLength(tile1, tile2, ship));
 
@@ -485,7 +490,11 @@ public class Turn {
 					System.out.println("You have already shot here");
 				}}
 			} catch (Exception e) {
-				System.out.println("Please ensure coordinates are entered in the correct form.");
+				System.out.println("\t\t******************************************************");
+				System.out.println("\t\t**        Wrong format of coordinates entered       **");
+				System.out.println("\t\t**  Please try again with the format of row,column  **");
+				System.out.println("\t\t**                 For example: 1,1                 **");
+				System.out.println("\t\t******************************************************\n");
 			}
 		} while (!b.inBounds(tile1));
 		// User's input for x and y are needed.
