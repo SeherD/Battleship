@@ -531,23 +531,25 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			Button btn = (Button) event.getSource();
 			int x = GridPane.getRowIndex(btn);
 			int y = GridPane.getColumnIndex(btn);
-
-
-			turn.ht(x, y, btn, gridPane2);
-			// turn.sinkComputer();
-			if (turn.getHumanShipsRemaining() <= 0 || turn.getComputerShipsRemaining() <= 0) {
-				turn.nullify(gridPane2);
-				ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
-				resetButton.setText("Play Again");
-			}
-
 			backButton.setOnMouseClicked(null);
 			backButton.setStyle("-fx-text-fill: black;" + 
 					"    -fx-font-family: Arial Narrow;" + 
 					"    -fx-font-weight: bold;" + 
 					"    -fx-background-color: linear-gradient(#000000, #FFFFFF);"+
 					"-fx-font-size: 22px;");
-			ctr=turn.computerTurn(gridPane1, ctr);
+
+			
+			// turn.sinkComputer();
+			if (turn.getHumanShipsRemaining() > 0 && turn.getComputerShipsRemaining()> 0) {
+				turn.ht(x, y, btn, gridPane2);
+				ctr=turn.computerTurn(gridPane1, ctr);
+			}
+			else if(turn.getHumanShipsRemaining() == 0 || turn.getComputerShipsRemaining()== 0) {
+			turn.nullify(gridPane2);
+			ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
+			resetButton.setText("Play Again");
+			}
+
 			ctr++;
 
 
@@ -570,19 +572,23 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 			turn.ht(x, y, btn, gridPane2);
 			// turn.sinkComputer();
 	
-			if (turn.getHumanShipsRemaining() == 0 || turn.getComputerShipsRemaining() == 0) {
-				turn.nullify(gridPane2);
-				ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
-				timeline.stop();
-				resetButton.setText("Play Again");
-			}
+			
 			backButton.setOnMouseClicked(null);
 			backButton.setStyle("-fx-text-fill: black;" + 
 					"    -fx-font-family: Arial Narrow;" + 
 					"    -fx-font-weight: bold;" + 
 					"    -fx-background-color: linear-gradient(#000000, #FFFFFF);"+
 					"-fx-font-size: 22px;");
-			ctr=turn.computerTurn(gridPane1, ctr);
+			if (turn.getHumanShipsRemaining() > 0 && turn.getComputerShipsRemaining()> 0) {
+				turn.ht(x, y, btn, gridPane2);
+				ctr=turn.computerTurn(gridPane1, ctr);
+			}
+			else if(turn.getHumanShipsRemaining() == 0 || turn.getComputerShipsRemaining()== 0) {
+				turn.nullify(gridPane2);
+				ut.end(turn.getHumanShipsRemaining(), turn.getComputerShipsRemaining(), gridPane2, turn);
+				timeline.stop();
+				resetButton.setText("Play Again");
+			}
 			ctr++;
 
 		
