@@ -745,7 +745,7 @@ public class Turn {
 	 * @param grid JavaFx's gridPane
 	 * @param ctr
 	 */
-	public int computerTurn(GridPane grid, int ctr) {
+	public int computerTurn(GridPane grid, int ctr){
 
 		Tile shoot = null;
 		if(ctr==0)
@@ -760,7 +760,7 @@ public class Turn {
 			nextShot.remove(0);
 		}
 		else if (potential.size()!=0) {
-			computerAI(grid, ctr);
+			computerAI(grid);
 			if(nextShot.size()!=0)
 			{
 				shoot=nextShot.get(0);
@@ -808,13 +808,15 @@ public class Turn {
 			this.makeList(shoot);
 
 			if(!humanSink(shoot,grid,ctr))
-				computerAI(grid,ctr);
+				computerAI(grid);
 			else {
 				if(!allSink())
 				{this.checkParity();
+				predicted.removeAll(predicted);
+				this.checksShips();
 				if(ctr<predicted.size()&&ctr-6>=0)
 					{shoot=predicted.get(ctr-6);
-					ctr-=6;
+					ctr=0;
 					}
 				AIx=shoot.getX();
 				AIy=shoot.getY();}
@@ -825,14 +827,14 @@ public class Turn {
 		else if (b.getBoard1()[AIx][AIy] == 3||b.getBoard1()[AIx][AIy] == 4)
 		{
 
-			this.computerAI(grid, ctr);
-			if(predicted.size()>ctr+1)
+			this.computerAI(grid);
+			if(predicted.size()>ctr)
 				{computerTurn(grid, ctr+1);
-				ctr++;
+				ctr=+5;
 				}
 			else
 				{computerTurn(grid, ctr-1);
-				ctr--;
+				ctr-=8;
 				}
 
 
@@ -845,6 +847,7 @@ public class Turn {
 		return ctr;
 
 	}
+
 
 	public boolean humanSink(Tile shoot, GridPane grid, int ctr) {
 		makeList(shoot);
@@ -905,11 +908,11 @@ public class Turn {
 	 * This AI method checks around the hit target, in order to find the next Ship
 	 * Tile.
 	 * 
-	 * @param i Row of Board
-	 * @param j Column of Board
-	 * @return boolean
+	 * @param JavaFX GridPane
+	 * 
+	 * 
 	 */
-	public void computerAI(GridPane grid, int ctr) {
+	public void computerAI(GridPane grid) {
 		Tile sinker = null;
 		int x, y;
 		for (int i = 0; i < potential.size(); i++) {
