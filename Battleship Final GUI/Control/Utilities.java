@@ -36,15 +36,19 @@ public class Utilities {
 		
 		// End messages are formed based on the win status.
 		String endMsg = "";
-		if (computerShip <= 0) {
-			endMsg = "Human player won! All computer's ships have been sunken.";
-		} else if (humanShip <= 0) {
-			endMsg = "Computer player won! All human's ships have been sunken.";
-		} else if (humanShip == computerShip) {
-			endMsg = "Both players are winners! Both players' ships have been sunken.";
-		} else {
-			endMsg = "HumanShip: " + humanShip + " ComputerShip: " + computerShip;
+		if ( computerShip<=0) {
+			endMsg = "Human player won! All computer ships have sunk.";
+		}else if (humanShip<=0) {
+			endMsg = "Computer player won! All human ships have sunk.";
+		}else if (humanShip == computerShip) {
+			endMsg = "Both players are winners! Both players' ships have sunk.";
 		}
+		else
+		{
+			endMsg = "HumanShip: "+humanShip+" ComputerShip: "+computerShip;
+		}
+		
+	
 		
 		// Info box pop up is displayed on GUI once the game ends.
 		turn.nullify(grid);
