@@ -1,10 +1,7 @@
 package Player;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
-import java.util.Scanner;
-
 import Game.Board;
 import Game.Tile;
 import Ships.Carrier;
@@ -17,11 +14,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-
 
 /**
- * This class is the main logic class to process players' SShip placement and attack.
+ * This class is the main logic class to process players' SShip placement and
+ * attack.
  * 
  * @author T2G6: Seher Dawar, Tian Xia, Jessica Tran and Spencer Luong.
  * @version 4.2: Final GUI version. April 2020.
@@ -29,8 +25,6 @@ import javafx.scene.text.Font;
 public class Turn {
 
 	private Board b = new Board();
-	// private Scanner kb= new Scanner(System.in);
-	private Tile t = new Tile();
 	Ship ship1 = new Carrier();
 	Ship ship2 = new Cruiser();
 	Ship ship3 = new Destroyer();
@@ -51,7 +45,8 @@ public class Turn {
 	Ship computerDestroyer = new Destroyer();
 	Ship computerSubmarine = new Submarine();
 	Ship computerPatrolBoat = new PatrolBoat();
-	Ship computerShips[] = { computerCarrier, computerCruiser, computerDestroyer, computerSubmarine, computerPatrolBoat };
+	Ship computerShips[] = { computerCarrier, computerCruiser, computerDestroyer, computerSubmarine,
+			computerPatrolBoat };
 
 	// All the ships start with full health.
 	private int computerCarrierHealth = 5;
@@ -115,52 +110,54 @@ public class Turn {
 	 * 
 	 * @return labels
 	 */
-		public Label getLabel2() {
-		
-		label2.setStyle("-fx-font-size: 32px;"+ "-fx-font-weight: bold;"+"-fx-text-fill: #FFF FFF;"+"-fx-font-family:Cambria");
-	
+	public Label getLabel2() {
+
+		label2.setStyle("-fx-font-size: 32px;" + "-fx-font-weight: bold;" + "-fx-text-fill: #FFF FFF;"
+				+ "-fx-font-family:Cambria");
+
 		return label2;
 	}
 
-
-
-
 	public Label getLabel1() {
-		label1.setStyle("-fx-font-size: 32px;"+ "-fx-font-weight: bold;"+"-fx-text-fill: #FFF FFF;"+"-fx-font-family:Cambria");
+		label1.setStyle("-fx-font-size: 32px;" + "-fx-font-weight: bold;" + "-fx-text-fill: #FFF FFF;"
+				+ "-fx-font-family:Cambria");
 		return label1;
 	}
-	 public void newBoard() {
-		 for(int i=0;i<10;i++)
-			 for(int j=0;j<10;j++)
-		 {b.setBoard1(i, j, 0);
-		 b.setBoard2(i, j, 0);}
-		 
-		 this.humanAllTiles.removeAll(humanAllTiles);
-		 this.computerAllTiles.removeAll(computerAllTiles);
-		 computerCarrierHealth = 5;
-		 computerCruiserHealth = 4;
-			computerDestroyerHealth = 3;
-			  computerSubmarineHealth = 3;
-			  computerPatrolBoatHealth = 2;
-			
-			  humanCarrierHealth = 5;
-			  humanCruiserHealth = 4;
-			  humanDestroyerHealth = 3;
-			  humanSubmarineHealth = 3;
-			  humanPatrolBoatHealth = 2;	
-			  computerShipsRemaining = 5;
-				humanShipsRemaining = 5;
-				labelString1="Human Ships: 5";
-				 labelString2="Computer Ships: 5";
-				 label1.setText(labelString1);
-				 label2.setText(labelString2);
-	 }
-	public void cleanboard(GridPane grid ) {
-		for (int i=0;i<10;i++)
-			for (int j=0;j<10;j++) {
-			
-					Node n=getNodeFromGridPane(grid , j, i);
-					if(n!=null)
+
+	public void newBoard() {
+		for (int i = 0; i < 10; i++)
+			for (int j = 0; j < 10; j++) {
+				b.setBoard1(i, j, 0);
+				b.setBoard2(i, j, 0);
+			}
+
+		this.humanAllTiles.removeAll(humanAllTiles);
+		this.computerAllTiles.removeAll(computerAllTiles);
+		computerCarrierHealth = 5;
+		computerCruiserHealth = 4;
+		computerDestroyerHealth = 3;
+		computerSubmarineHealth = 3;
+		computerPatrolBoatHealth = 2;
+
+		humanCarrierHealth = 5;
+		humanCruiserHealth = 4;
+		humanDestroyerHealth = 3;
+		humanSubmarineHealth = 3;
+		humanPatrolBoatHealth = 2;
+		computerShipsRemaining = 5;
+		humanShipsRemaining = 5;
+		labelString1 = "Human Ships: 5";
+		labelString2 = "Computer Ships: 5";
+		label1.setText(labelString1);
+		label2.setText(labelString2);
+	}
+
+	public void cleanboard(GridPane grid) {
+		for (int i = 0; i < 10; i++)
+			for (int j = 0; j < 10; j++) {
+
+				Node n = getNodeFromGridPane(grid, j, i);
+				if (n != null)
 					n.setStyle(null);
 			}
 	}
@@ -259,7 +256,8 @@ public class Turn {
 	}
 
 	/**
-	 * This method generates random coordinates that are legitimate for the computer player.
+	 * This method generates random coordinates that are legitimate for the computer
+	 * player.
 	 * 
 	 * @param tile1  Start Tile
 	 * @param tile2  End Tile
@@ -379,7 +377,8 @@ public class Turn {
 					b.setBoardComputer(tile3, tile4);
 				}
 			}
-			// Between the start and end Tiles, new Tile objects are created and collected in an arrayList.
+			// Between the start and end Tiles, new Tile objects are created and collected
+			// in an arrayList.
 			if (tile3.getX() == tile4.getX()) {
 				for (int iy = tile3.getY(); iy < tile4.getY(); iy++) {
 					Tile tile = new Tile(tile3.getX(), iy, computerShips[i].getShipName());
@@ -402,7 +401,8 @@ public class Turn {
 	}
 
 	/**
-	 * This method checks if the clicked location on Board GUI can be used to place a ship horizontally.
+	 * This method checks if the clicked location on Board GUI can be used to place
+	 * a ship horizontally.
 	 * 
 	 * @param x    Row of Board
 	 * @param y    Column of Board
@@ -432,7 +432,8 @@ public class Turn {
 				return false;
 			}
 		}
-		// The particular ship size is used to determine the legitimacy of the ship placement.
+		// The particular ship size is used to determine the legitimacy of the ship
+		// placement.
 		if (y > 10 - ship.getShipSize())
 			if (this.middleEmptyH2(x, y, ship))
 				for (int i = y; i > y - ship.getShipSize(); i--) {
@@ -455,7 +456,8 @@ public class Turn {
 	}
 
 	/**
-	 * This method checks if the clicked location on Board GUI can be used to place a ship vertically.
+	 * This method checks if the clicked location on Board GUI can be used to place
+	 * a ship vertically.
 	 * 
 	 * @param x    Row of Board
 	 * @param y    Column of Board
@@ -465,7 +467,8 @@ public class Turn {
 	 * @return boolean whether Ship can be placed vertically
 	 */
 	public boolean vship(int x, int y, Node node, GridPane grid, Ship ship) {
-		// The particular ship size is used to determine the legitimacy of the ship placement.
+		// The particular ship size is used to determine the legitimacy of the ship
+		// placement.
 		if (x < 10 - ship.getShipSize())
 			if (this.middleEmptyV1(x, y, ship))
 				for (int i = x; i < x + ship.getShipSize(); i++) {
@@ -535,7 +538,8 @@ public class Turn {
 	}
 
 	/**
-	 * This method prevents user's mouse clicks after all five ships have been placed on Board GUI.
+	 * This method prevents user's mouse clicks after all five ships have been
+	 * placed on Board GUI.
 	 * 
 	 * @param grid JavaFX's gridPane
 	 */
@@ -550,8 +554,8 @@ public class Turn {
 	}
 
 	/**
-	 * This method checks computer player's status. 
-	 * Based on the status, feedbacks are provided to the user.
+	 * This method checks computer player's status. Based on the status, feedbacks
+	 * are provided to the user.
 	 * 
 	 * @param x      Row of Board
 	 * @param y      Column of Board
@@ -627,13 +631,13 @@ public class Turn {
 	}
 
 	/**
-	 *  The rest of the class is the implementation of game AI.
-	 *  Step 1: AI checks the board and determines whether the top or bottom half has more Ship Tiles placed.
-	 *  Step 2: Based on Step 1, AI starts from (0,0) or (9,9) to check every second Tile.
-	 *  Step 3: If the Tile checked is a Ship Tile, then AI attacks Tile and Tile is marked as hit.
-	 *  Step 4: AI checks around the hit Tile and see if there is another Ship Tile.
-	 *  Step 5: Based on the direction of the two Ship Tiles, AI continues to check.
-	 *  Step 6: When there is no Ship Tile around, AI would move on to the next Tile.
+	 * The rest of the class is the implementation of game AI. 
+	 * Step 1: AI checks the board and determines whether the top or bottom half has more Ship Tiles placed. 
+	 * Step 2: Based on Step 1, AI starts from (0,0) or (9,9) to check every second Tile. 
+	 * Step 3: If the Tile checked is a Ship Tile, then AI attacks Tile and Tile is marked as hit. 
+	 * Step 4: AI checks around the hit Tile and see if there is another Ship Tile. 
+	 * Step 5: Based on the direction of the two Ship Tiles, AI continues to check. The radius go bigger after a hit check.
+	 * Step 6: When there is no Ship Tile around, AI would move on to the next Tile.
 	 */
 	public void checksShips() {
 		int top = 0, down = 0;
@@ -745,120 +749,111 @@ public class Turn {
 	 * @param grid JavaFx's gridPane
 	 * @param ctr
 	 */
-	public int computerTurn(GridPane grid, int ctr){
+	public int computerTurn(GridPane grid, int ctr) {
 
 		Tile shoot = null;
-		if(ctr==0)
+		if (ctr == 0)
 			checksShips();
 		else
 			this.checkParity();
-		if(nextShot.size()!=0)
-		{
-			shoot=nextShot.get(0);
-			AIx=shoot.getX();
-			AIy=shoot.getY();
+		if (nextShot.size() != 0) {
+			shoot = nextShot.get(0);
+			AIx = shoot.getX();
+			AIy = shoot.getY();
 			nextShot.remove(0);
-		}
-		else if (potential.size()!=0) {
+		} else if (potential.size() != 0) {
 			computerAI(grid);
-			if(nextShot.size()!=0)
-			{
-				shoot=nextShot.get(0);
-				AIx=shoot.getX();
-				AIy=shoot.getY();
+			if (nextShot.size() != 0) {
+				shoot = nextShot.get(0);
+				AIx = shoot.getX();
+				AIy = shoot.getY();
 				nextShot.remove(0);
-			}
-			else {
-				if(ctr<predicted.size()&&ctr>=0)
-				{shoot=predicted.get(ctr);
-				AIx=shoot.getX();
-				AIy=shoot.getY();
+			} else {
+				if (ctr < predicted.size() && ctr >= 0) {
+					shoot = predicted.get(ctr);
+					AIx = shoot.getX();
+					AIy = shoot.getY();
 				}
 			}
 
+		} else {
+			if (ctr < predicted.size() && ctr >= 0) {
+				shoot = predicted.get(ctr);
+				AIx = shoot.getX();
+				AIy = shoot.getY();
+			}
 
 		}
-		else {
-			if(ctr<predicted.size()&&ctr>=0)
-			{shoot=predicted.get(ctr);
-			AIx=shoot.getX();
-			AIy=shoot.getY();}
 
-		}
-
-		if (b.getBoard1()[AIx][AIy] == 0) 
-		{
-			Node n=getNodeFromGridPane(grid , AIy, AIx);
+		if (b.getBoard1()[AIx][AIy] == 0) {
+			Node n = getNodeFromGridPane(grid, AIy, AIx);
 			n.setStyle("-fx-background-color: blue;");
 			n.setOnMouseClicked(null);
 
 			b.setBoard1(AIx, AIy, 4);
 
+		} else if (b.getBoard1()[AIx][AIy] == 1) {
 
-
-		} 
-		else if (b.getBoard1()[AIx][AIy] == 1)
-		{	
-
-			Node n=getNodeFromGridPane(grid , AIy, AIx);
+			Node n = getNodeFromGridPane(grid, AIy, AIx);
 			n.setStyle("-fx-background-color: red;");
 			n.setOnMouseClicked(null);
 
 			b.setBoard1(AIx, AIy, 3);
 			this.makeList(shoot);
 
-			if(!humanSink(shoot,grid,ctr))
+			if (!humanSink(shoot, grid, ctr))
 				computerAI(grid);
 			else {
-				if(!allSink())
-				{this.checkParity();
-				predicted.removeAll(predicted);
-				
-				this.checksShips();
-				ctr=0;
-				
-				predicted.add(new Tile(0,0));
-				shoot=predicted.get(ctr);
-				AIx=shoot.getX();
-				AIy=shoot.getY();}
+				if (!allSink()) {
+					this.checkParity();
+					predicted.removeAll(predicted);
+
+					this.checksShips();
+					ctr = 0;
+
+					predicted.add(new Tile(0, 0));
+					shoot = predicted.get(ctr);
+					AIx = shoot.getX();
+					AIy = shoot.getY();
+				}
 
 			}
 
-		}
-		else if (b.getBoard1()[AIx][AIy] == 3||b.getBoard1()[AIx][AIy] == 4)
-		{
+		} else if (b.getBoard1()[AIx][AIy] == 3 || b.getBoard1()[AIx][AIy] == 4) {
 
 			this.computerAI(grid);
-			if(predicted.size()>ctr)
-				{
-				computerTurn(grid, ctr+1);
-				
-				}
-			else if(predicted.size()==ctr)
-				{advance();
-				ctr=-1;
-			
-				}
-			
-			else 
-				{
-				
-				this.advance();
-				
-				ctr=0;
-				}
-			
+			if (predicted.size() > ctr) {
+				computerTurn(grid, ctr + 1);
 
+			} else if (predicted.size() == ctr) {
+				advance();
+				ctr = -1;
+
+			}
+
+			else {
+
+				this.advance();
+
+				ctr = 0;
+			}
 
 		}
 
-		labelString1="Human Ships: "+humanShipsRemaining;
+		labelString1 = "Human Ships: " + humanShipsRemaining;
 		label1.setText(labelString1);
 
 		b.printBoard();
 		return ctr;
 
 	}
+
+	/**
+	 * @param shoot Tile to be shot at
+	 * @param grid  JavaFX grid
+	 * @param ctr   Counter to increase to check through all the items
+	 * @return
+	 */
 	public boolean humanSink(Tile shoot, GridPane grid, int ctr) {
 		makeList(shoot);
 		String tileBelongsTo = tileBelongsTo(AIx, AIy, humanAllTiles);
@@ -915,34 +910,33 @@ public class Turn {
 	}
 
 	/**
-	 * This AI method checks around the hit target, in order to find the next Ship
-	 * Tile.
+	 * This AI method checks around the hit target, in order to find the next Ship Tile.
 	 * 
 	 * @param JavaFX GridPane
 	 * 
 	 * 
 	 */
-		public void computerAI(GridPane grid)
-	{	Tile sinker = null;
-	int x,y;
-	for(int i=0;i<potential.size();i++)
-	{sinker=potential.get(i);
-	potential.remove(i);
-	x=sinker.getX();
-	y=sinker.getY();
-	if (b.getBoard1()[x][y] == 1) 
-	{
-		nextShot.add(sinker);
+	public void computerAI(GridPane grid) {
+		Tile sinker = null;
+		int x, y;
+		for (int i = 0; i < potential.size(); i++) {
+			sinker = potential.get(i);
+			potential.remove(i);
+			x = sinker.getX();
+			y = sinker.getY();
+			if (b.getBoard1()[x][y] == 1) {
+				nextShot.add(sinker);
+
+			}
+		}
 
 	}
-	}
 
+	public void advance() {
+		for (int i = 0; i < 10; i++)
+			for (int j = 0; j < 10; j++)
+				if (b.getBoard1()[i][j] == 1)
+					predicted.add(new Tile(i, j));
 	}
-public void advance() {
-	for (int i=0;i<10;i++)
-		for(int j=0;j<10;j++)
-			if(b.getBoard1()[i][j]==1)
-				predicted.add(new Tile(i,j));
-}
 
 }
