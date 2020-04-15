@@ -769,7 +769,7 @@ public class Turn {
 				nextShot.remove(0);
 			}
 			else {
-				if(ctr<predicted.size())
+				if(ctr<predicted.size()&&ctr>=0)
 				{shoot=predicted.get(ctr);
 				AIx=shoot.getX();
 				AIy=shoot.getY();
@@ -779,7 +779,7 @@ public class Turn {
 
 		}
 		else {
-			if(ctr<predicted.size())
+			if(ctr<predicted.size()&&ctr>=0)
 			{shoot=predicted.get(ctr);
 			AIx=shoot.getX();
 			AIy=shoot.getY();}
@@ -813,11 +813,12 @@ public class Turn {
 				if(!allSink())
 				{this.checkParity();
 				predicted.removeAll(predicted);
+				
 				this.checksShips();
-				if(ctr<predicted.size()&&ctr-6>=0)
-					{shoot=predicted.get(ctr-6);
-					ctr=0;
-					}
+				ctr=0;
+				
+				predicted.add(new Tile(0,0));
+				shoot=predicted.get(ctr);
 				AIx=shoot.getX();
 				AIy=shoot.getY();}
 
@@ -829,13 +830,24 @@ public class Turn {
 
 			this.computerAI(grid);
 			if(predicted.size()>ctr)
-				{computerTurn(grid, ctr+1);
-				ctr=+5;
+				{
+				computerTurn(grid, ctr+1);
+				
 				}
-			else
-				{computerTurn(grid, ctr-1);
-				ctr-=8;
+			else if(predicted.size()==ctr)
+				{advance();
+				ctr=-1;
+			
 				}
+			
+			else 
+				{
+				
+				this.advance();
+				
+				ctr=0;
+				}
+			
 
 
 		}
@@ -847,8 +859,6 @@ public class Turn {
 		return ctr;
 
 	}
-
-
 	public boolean humanSink(Tile shoot, GridPane grid, int ctr) {
 		makeList(shoot);
 		String tileBelongsTo = tileBelongsTo(AIx, AIy, humanAllTiles);
@@ -912,17 +922,27 @@ public class Turn {
 	 * 
 	 * 
 	 */
-	public void computerAI(GridPane grid) {
-		Tile sinker = null;
-		int x, y;
-		for (int i = 0; i < potential.size(); i++) {
-			sinker = potential.get(i);
-			potential.remove(i);
-			x = sinker.getX();
-			y = sinker.getY();
-			if (b.getBoard1()[x][y] == 1) {
-				nextShot.add(sinker);
-			}
-		}
+		public void computerAI(GridPane grid)
+	{	Tile sinker = null;
+	int x,y;
+	for(int i=0;i<potential.size();i++)
+	{sinker=potential.get(i);
+	potential.remove(i);
+	x=sinker.getX();
+	y=sinker.getY();
+	if (b.getBoard1()[x][y] == 1) 
+	{
+		nextShot.add(sinker);
+
 	}
+	}
+
+	}
+public void advance() {
+	for (int i=0;i<10;i++)
+		for(int j=0;j<10;j++)
+			if(b.getBoard1()[i][j]==1)
+				predicted.add(new Tile(i,j));
+}
+
 }
