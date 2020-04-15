@@ -29,5 +29,9 @@ Once all ships are placed on the board, users will be able to attack their oppon
 # Authors
 T2G6: Seher Dawar, Tian Xia, Spencer Luong and Jessica Tran
 
+# Media Sources
+All the images including main menu, all buttons and help page are created by our team member Jessica Tran. 
+The .mp3 file which enables the backgound music is from https://youtu.be/Sv8VCysFVh4 "03 - Game Theme - Battleship (NES) - Soundtrack - Nintendo"
+
 # Year
 Project started in February 2020, Status: Final submission of GUI and text-based versions.
