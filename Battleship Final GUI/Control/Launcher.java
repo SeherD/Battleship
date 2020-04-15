@@ -619,10 +619,8 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 	}
 
 	/**
-	 * @param stage
-	 * @param normal
-	 * @param timed
-	 * @return
+	 * This method sets up the main menu of the program.
+	 * @param stage JavaFx Stage
 	 */
 	private void MainMenu(Stage stage) {
 		Image background = new Image("file:1200x700 MainMenu.png");
@@ -702,7 +700,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 		});
 
 
-	/*
+	
 			Media sound = new Media(new File("battleshipMusic.mp3").toURI().toString());
 			MediaPlayer mediaPlayer = new MediaPlayer(sound);
 			mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -733,7 +731,7 @@ public class Launcher extends Application implements EventHandler<ActionEvent> {
 					}
 				}
 			});
-		*/
+		
 		//END OF MUSIC CODE
 
 		// This button will take us to a new scene for more help options
